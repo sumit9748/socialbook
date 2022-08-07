@@ -1,0 +1,34 @@
+
+.tagUser{
+    display: flex;
+    padding: 20px;
+    align-items: center;
+    justify-content: center;
+}
+.tagUser h1{
+    font-weight: 400;
+    font-style: 30px;
+    margin: 20px 30px;
+}
+.searchUserBody{
+    background-color: rgb(234, 231, 227);
+    color:black;
+}
+
+.searchuser{
+    width: 90%;
+    height: 50px;
+    border: none;
+    border-radius: 10px;
+    background-color: aliceblue;
+}
+.tagUserEdit{
+    color:black;
+    display: flex;
+    margin: 10px 0;
+    align-items: center;
+}
+.tagUserEdit>span :link {
+    text-decoration: none;
+    text-underline-offset: white;
+  }

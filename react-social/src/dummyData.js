@@ -1,0 +1,103 @@
+export const Users=[
+    {
+        id:1,
+        profilePicture:"sumit.jpg",
+        username:"Sumit Mondal",
+    },
+    {
+        id:2,
+        profilePicture:"soumita.jpg",
+        username:"Soumita Mondal",
+    },
+    {
+        id:3,
+        profilePicture:"bag.jpg",
+        username:"Subhadip Bag",
+    },
+    {
+        id:4,
+        profilePicture:"suvo.jpg",
+        username:"Subhajit Bhukta",
+    },
+    {
+        id:5,
+        profilePicture:"palash.jpg",
+        username:"Palash Majhi",
+    },
+    {
+        id:6,
+        profilePicture:"pokai.jpg",
+        username:"Sumit Dhara",
+    },
+    {
+        id:7,
+        profilePicture:"langta.jpg",
+        username:"Soumalya Bhakta",
+    },
+
+];
+export const Posts=[
+    {
+        id:1,
+        desc:"Have a Cofee...!!!",
+        photo:"1.jpg",
+        date:"15 mins ago",
+        userId:1,
+        like:132,
+        comment:19,
+    },
+    {
+        id:2,
+        desc:"...Relax Babe...",
+        photo:"2.jpg",
+        date:"15 mins ago",
+        userId:2,
+        like:32,
+        comment:2,
+    },
+    {
+        id:3,
+        desc:" Town that stays in my mind...",
+        photo:"4.jpg",
+        date:"25 mins ago",
+        userId:3,
+        like:30,
+        comment:4,
+    },
+    {
+        id:4,
+        desc:"The awsomeness of money...",
+        photo:"5.jpg",
+        date:"32 mins ago",
+        userId:4,
+        like:22,
+        comment:1,
+    },
+    {
+        id:5,
+        desc:"Ohooo Hotty....",
+        photo:"6.jpg",
+        date:"53 mins ago",
+        userId:1,
+        like:436,
+        comment:86,
+    },
+    {
+        id:6,
+        desc:"butterfly yoo next to fly",
+        photo:"7.jpg",
+        date:"1 mins ago",
+        userId:6,
+        like:132,
+        comment:66,
+    },
+    {
+        id:7,
+        desc:"HLike to stay alone",
+        photo:"8.jpg",
+        date:"9 mins ago",
+        userId:7,
+        like:278,
+        comment:29,
+    },
+]

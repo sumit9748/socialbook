@@ -1,0 +1,130 @@
+.updateUser {
+  width: 100%;
+  height: calc(100vh-50px);
+}
+.updateUserWrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+.updateUserTop {
+  flex: 1;
+}
+.updateUserBottom {
+  flex: 1;
+  display: flex;
+  margin-top: 40px;
+}
+.userDetailsText {
+  font-style: 24px;
+  font-weight: bold;
+  align-items: left;
+  margin-bottom: 20px;
+}
+.updateUserTop {
+  display: flex;
+  height: 700px;
+  width: 100%;
+}
+.updateUserTopLeft {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.updateUserTopRight {
+  flex: 1;
+  padding: 20px;
+  align-items: center;
+  margin-top: 10px;
+}
+.updateUserItem {
+  display: flex;
+  margin-bottom: 20px;
+  align-items: flex-start;
+  justify-content: space-around;
+}
+.updateUserKey {
+  font-size: 20px;
+  font-weight: 600;
+  margin-right: 20px;
+
+}
+.updateUserValue {
+  font-size: 16px;
+  color: #555;
+  font-weight: 400;
+}
+.imgContainer {
+  width: 300px;
+  height: 300px;
+  border-radius: 20px;
+  object-fit: cover;
+}
+.updateHr {
+  color: #555;
+  width: 90%;
+  margin-left: 40px;
+}
+.updateUserBottomLeft {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.inputChange {
+  border: none;
+  border-bottom: 1px solid gray;
+  padding: 7px;
+  height: 10px;
+  width: 60%;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+.updateUserBottomRight {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+.radioContainer {
+  display: flex;
+  justify-content: space-between;
+}
+.inputRadio {
+  margin: 0px 20px;
+}
+.updateButton {
+  padding: 7px;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  border: none;
+  border-radius: 10px;
+  margin-top: 20px;
+  align-items: center;
+  font-size: 16px;
+}
+.updateIcone {
+  font-size: 70px !important;
+}
+.shareImg {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+
+.shareCancelImg {
+  position: absolute;
+  right: 20px;
+  cursor: pointer;
+  opacity: 0.7;
+  top: 100px;
+ 
+}
+.fileImgContainer {
+  padding: 0 20px 10px 20px;
+  position: relative;
+}
+.registerIconAdd{
+  font-size: 3.5rem!important;
+}
