@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
-const helmet = require("helmet");
+// const helmet = require("helmet");
 const morgan = require("morgan");
 const multer = require("multer");
 const userRoute = require("./routes/users");
@@ -14,12 +14,11 @@ const onlineRoute = require("./routes/onlines");
 const router = express.Router();
 const path = require("path");
 const cors = require("cors");
-const PORT = 5000 || process.env.PORT;
 
 dotenv.config();
 
 mongoose.connect(
-  'mongodb://localhost:27017/socialbook',
+  process.env.MONGO_URL,
   { useNewUrlParser: true, useUnifiedTopology: true },
   () => {
     console.log("Connected to MongoDB");
@@ -32,7 +31,7 @@ app.use(cors(
 
 //middleware
 app.use(express.json());
-app.use(helmet());
+// app.use(helmet());
 app.use(morgan("common"));
 
 
@@ -67,6 +66,8 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '/react-social/build', 'index.html'));
 });
 
-app.listen(PORT, () => {
-  console.log("Backend server is running!");
+
+app.listen(process.env.PORT || 8000, '0.0.0.0', function () {
+  console.log('Listening on port %d');
 });
+
