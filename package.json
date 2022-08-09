@@ -8,8 +8,7 @@
     "npm": "8.3.0"
   },
   "scripts": {
-    "postinstall": "npm run build",
-    "start": "nodemon --exec babel-node index.js",
+    "start": "node index.js",
     "heroku-postbuild": "cd react-social && npm install && npm run build"
   },
   "author": "",
