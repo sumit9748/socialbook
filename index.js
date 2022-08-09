@@ -26,10 +26,11 @@ mongoose.connect(
 );
 app.use("/images", express.static(path.join(__dirname, "public/images")));
 
-app.use(cors(
-  origin = "*",
-));
-
+app.use(cors({
+  origin: "*",
+  methods: "GET,POST,PUT,DELETE",
+})
+);
 //middleware
 app.use(express.json());
 // app.use(helmet());
