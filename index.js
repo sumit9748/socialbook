@@ -25,6 +25,7 @@ mongoose.connect(
   }
 );
 app.use("/images", express.static(path.join(__dirname, "public/images")));
+
 app.use(cors(
   origin = "*",
 ));
@@ -68,6 +69,6 @@ app.get('*', (req, res) => {
 
 
 app.listen(process.env.PORT || 8000, '0.0.0.0', function () {
-  console.log('Listening on port %d');
+  console.log('Listening on port');
 });
 
