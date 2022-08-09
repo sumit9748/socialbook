@@ -73,7 +73,9 @@ export default function Topbar({ text, setText, socket }) {
           <Link to="/" style={{ linkStyle: "none", textDecoration: "none", color: "white" }}>
             <span className="topbarLink">Home</span>
           </Link>
-          <span className="topbarLink">TimeLine</span>
+          <Link to="/searchUser">
+            <span className="topbarLink">TimeLine</span>
+          </Link>
         </div>
         <div className="topbarIcons">
           <Link to="/searchUser"><div className="topbarIconItem">
