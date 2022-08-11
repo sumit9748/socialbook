@@ -24,7 +24,7 @@ mongoose.connect(
     console.log("Connected to MongoDB");
   }
 );
-app.use("/images", express.static(path.join(__dirname, "publicimages")));
+app.use("/images", express.static(path.join(__dirname, "public/images")));
 
 app.use(cors({
   origin: "*",
