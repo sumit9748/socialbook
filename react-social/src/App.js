@@ -21,7 +21,7 @@ function App() {
   const socket = useRef();
 
   useEffect(() => {
-    socket.current = io("ws://localhost:8900");
+    socket.current = io("https://fathomless-lake-37642.herokuapp.com//");
   }, [])
 
   useEffect(() => {
