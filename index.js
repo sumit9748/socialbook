@@ -24,7 +24,7 @@ mongoose.connect(
     console.log("Connected to MongoDB");
   }
 );
-app.use("/images", express.static(path.join(__dirname, "images")));
+app.use("/images", express.static(path.join(__dirname, "publicimages")));
 
 app.use(cors({
   origin: "*",
@@ -39,7 +39,7 @@ app.use(morgan("common"));
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "images");
+    cb(null, "public/images");
   },
   filename: (req, file, cb) => {
     cb(null, req.body.name);

@@ -9,7 +9,7 @@ import { axiosInstance } from '../../config';
 const TagUser = () => {
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
-    const [search, setSearch] = useState("first");
+    const [search, setSearch] = useState("");
     const [allusers, setAllusers] = useState([])
     const { user: currentUser } = useContext(AuthContext);
 
