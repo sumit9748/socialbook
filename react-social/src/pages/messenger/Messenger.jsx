@@ -81,7 +81,7 @@ export default function Messenger({ socket }) {
       conversationId: currentChat._id,
     };
 
-    const receiverId = currentChat.members.find(
+    const receiverId = currentChat?.members.find(
       (member) => member !== user._id
     );
 
