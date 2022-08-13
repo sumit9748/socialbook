@@ -20,6 +20,8 @@ export default function ChatOnline({ onlineUsers, currentId, setCurrentChat }) {
     setOnlineFriends(friends.filter((f) => onlineUsers.includes(f._id)));
   }, [friends, onlineUsers]);
 
+  console.log(onlineFriends);
+
   const handleClick = async (user) => {
     try {
       const res = await axiosInstance.get(
