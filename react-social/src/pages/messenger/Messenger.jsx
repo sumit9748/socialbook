@@ -43,6 +43,8 @@ export default function Messenger({ socket }) {
     });
   }, [user]);
 
+  console.log(onlineUsers)
+
   useEffect(() => {
     const getConversations = async () => {
       try {

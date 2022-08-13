@@ -30,11 +30,8 @@ mongoose.connect(
 );
 app.use("/images", express.static(path.join(__dirname, "public/images")));
 
-app.use(cors({
-  origin: "*",
-  methods: "GET,POST,PUT,DELETE",
-})
-);
+app.use(cors());
+
 //middleware
 app.use(express.json());
 // app.use(helmet());
