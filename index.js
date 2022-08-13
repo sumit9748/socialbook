@@ -14,6 +14,7 @@ const onlineRoute = require("./routes/onlines");
 const router = express.Router();
 const path = require("path");
 const cors = require("cors");
+const io = require("socket.io");
 
 dotenv.config();
 
@@ -76,6 +77,7 @@ app.get('*', (req, res) => {
 // });
 
 let users = [];
+
 
 const addUser = (userId, socketId) => {
   !users.some((user) => user.userId === userId) &&
