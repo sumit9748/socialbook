@@ -5,7 +5,7 @@ import { useContext, useState } from "react";
 import { useRef } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { axiosInstance } from "../../config";
-
+import { storage } from "../../pages/Firebase";
 //import { useFormControl } from "../../../../../expense-manager/client/node_modules/@mui/material";
 
 export const UpdateUser = ({ userc }) => {
