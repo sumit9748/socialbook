@@ -16,7 +16,13 @@ const path = require("path");
 const cors = require("cors");
 
 const http = require("http").createServer(app);
-const io = require("socket.io")(http);
+
+const io = require("socket.io")(http, {
+  cors: {
+    origin: "*",
+    methods: ["GET", "POST", "DELETE", "PUT"]
+  }
+});
 
 
 dotenv.config();
