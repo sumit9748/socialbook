@@ -14,7 +14,7 @@ export default function Messenger({ socket }) {
   const [newMessage, setNewMessage] = useState("");
   const [arrivalMessage, setArrivalMessage] = useState(null);
   const [onlineUsers, setOnlineUsers] = useState([]);
-  const { user: currentUser } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
   const scrollRef = useRef();
 
@@ -36,7 +36,7 @@ export default function Messenger({ socket }) {
   }, [arrivalMessage, currentChat]);
 
   useEffect(() => {
-    socket?.current?.emit("addUser", currentUser._id);
+    socket?.current?.emit("addUser", user._id);
 
     socket?.current.on("getUsers", (users) => {
       setOnlineUsers(
