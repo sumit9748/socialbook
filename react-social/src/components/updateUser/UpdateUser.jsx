@@ -18,6 +18,10 @@ export const UpdateUser = ({ userc }) => {
   const relation = useRef();
   const { dispatch } = useContext(AuthContext);
 
+  const allInputs = { imgUrl: '' }
+  const [imageAsFile, setImageAsFile] = useState('')
+  const [imageAsUrl, setImageAsUrl] = useState(allImputs)
+
   let relationship;
 
   if (userc.relationship === 1) {
@@ -30,6 +34,8 @@ export const UpdateUser = ({ userc }) => {
 
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const [file, setFile] = useState(null);
+
+  console.log(imageAsFile)
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -50,6 +56,9 @@ export const UpdateUser = ({ userc }) => {
       data.append("name", FileName);
       data.append("file", file);
       updatedUser.profilePicture = FileName;
+
+      const image = e.target.files[0]
+      setImageAsFile(imageFile => (image))
       try {
         await axiosInstance.post("/upload", data);
       } catch (err) {
