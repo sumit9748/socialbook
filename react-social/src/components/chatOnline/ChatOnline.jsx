@@ -28,7 +28,7 @@ export default function ChatOnline({ onlineUsers, currentId, setCurrentChat }) {
         `/conversations/find/${currentId}/${user._id}`
       );
       console.log(res.data);
-      if (res.data === undefined) {
+      if (res.data === null) {
         await axiosInstance.post("/conversations/",
           {
             senderId: currentId,
