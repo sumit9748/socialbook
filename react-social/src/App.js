@@ -21,7 +21,7 @@ function App() {
   const socket = useRef();
 
   useEffect(() => {
-    socket.current = io("https://fathomless-lake-37642.herokuapp.com//");
+    socket.current = io("https://socialbooksumit.herokuapp.com/");
   }, [])
 
   useEffect(() => {
