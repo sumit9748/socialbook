@@ -19,8 +19,10 @@ import { io } from "socket.io-client";
 function App() {
   const { user } = useContext(AuthContext);
   const socket = useRef();
+  useEffect(() => {
+    socket.current = io("https://socialbooksumit.herokuapp.com/");
 
-  socket.current = io("https://socialbooksumit.herokuapp.com/");
+  }, [])
 
 
   useEffect(() => {
