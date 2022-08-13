@@ -14,9 +14,9 @@ const onlineRoute = require("./routes/onlines");
 const router = express.Router();
 const path = require("path");
 const cors = require("cors");
+const http = require("http").createServer();
+const io = require("socket.io")(http);
 
-
-const io = require("socket.io")(process.env.PORT || 8000);
 
 dotenv.config();
 
@@ -121,7 +121,7 @@ io.on("connection", (socket) => {
   });
 });
 
-app.listen(process.env.PORT || 8000, '0.0.0.0', function () {
+http.listen(process.env.PORT || 8000, '0.0.0.0', function () {
   console.log('Listening on port');
 });
 
