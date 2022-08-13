@@ -41,6 +41,7 @@ export default function Rightbar({ user, socket }) {
     });
   }, [currentUser]);
 
+  console.log(onlineUsers)
 
   const handleClick = async () => {
     try {

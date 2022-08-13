@@ -36,6 +36,8 @@ export default function Messenger({ socket }) {
   }, [arrivalMessage, currentChat]);
 
   useEffect(() => {
+    socket?.current?.emit("addUser", currentUser._id);
+
     socket?.current.on("getUsers", (users) => {
       setOnlineUsers(
         user.followings.filter((f) => users.some((u) => u.userId === f))
