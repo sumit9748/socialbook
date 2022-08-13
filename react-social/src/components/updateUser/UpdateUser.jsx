@@ -20,7 +20,7 @@ export const UpdateUser = ({ userc }) => {
 
   const allInputs = { imgUrl: '' }
   const [imageAsFile, setImageAsFile] = useState('')
-  const [imageAsUrl, setImageAsUrl] = useState(allImputs)
+  const [imageAsUrl, setImageAsUrl] = useState(allInputs)
 
   let relationship;
 
@@ -58,7 +58,7 @@ export const UpdateUser = ({ userc }) => {
       updatedUser.profilePicture = FileName;
 
       const image = e.target.files[0]
-      setImageAsFile(imageFile => (image))
+      setImageAsFile(imageAsFile => (image))
       try {
         await axiosInstance.post("/upload", data);
       } catch (err) {
