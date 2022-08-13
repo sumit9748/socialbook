@@ -57,7 +57,8 @@ export const UpdateUser = ({ userc }) => {
       data.append("file", file);
       updatedUser.profilePicture = FileName;
 
-      const image = e.target.files[0]
+      const image = file;
+      console.log(file)
       setImageAsFile(imageAsFile => (image))
       try {
         await axiosInstance.post("/upload", data);
