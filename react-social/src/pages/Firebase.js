@@ -20,6 +20,4 @@ const storage = firebase.storage()
 //analytics is optional for this tutoral 
 firebase.analytics();
 
-export {
-    storage, firebase as default
-}
+export default { storage, firebase };
