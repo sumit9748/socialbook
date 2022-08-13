@@ -70,12 +70,6 @@ app.get('*', (req, res) => {
 });
 
 
-// const io = require("socket.io")({
-//   cors: {
-//     origin: "https://socialbooksumit.herokuapp.com/",
-//   },
-// });
-
 let users = [];
 
 
