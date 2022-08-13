@@ -14,7 +14,8 @@ const onlineRoute = require("./routes/onlines");
 const router = express.Router();
 const path = require("path");
 const cors = require("cors");
-const http = require("http").createServer();
+
+const http = require("http").createServer(app);
 const io = require("socket.io")(http);
 
 
