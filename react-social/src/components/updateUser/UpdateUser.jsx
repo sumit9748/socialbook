@@ -69,9 +69,7 @@ export const UpdateUser = ({ userc }) => {
         const imgRef = ref(storage, `images/${imageAsFile.name + v4()}`);
         uploadBytes(imgRef, imageAsFile).then((res) => {
 
-        }).catch(err){
-          console.log(err);
-        }
+        })
 
         await axiosInstance.post("/upload", data);
       } catch (err) {
