@@ -8,22 +8,36 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
-import { useContext, useEffect, useRef } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { AuthContext } from "./context/AuthContext";
 import Messenger from "./pages/messenger/Messenger";
 import { UpdateProfile } from "./pages/updateProfile/UpdateProfile";
 import TagUser from "./components/tagUser/TagUser";
 import { io } from "socket.io-client";
+import { storage } from "./pages/Firebase"
+import { ref, listAll } from 'firebase/storage'
+import { storage } from "../../pages/Firebase";
+import { v4 } from "uuid"
 
 
 function App() {
   const { user } = useContext(AuthContext);
   const socket = useRef();
+
+  const ImgListRef = ref(storage, "images/");
   useEffect(() => {
     socket.current = io("https://socialbooksumit.herokuapp.com/");
 
   }, [])
 
+  const [imageList, setImageList] = useState([]);
+  useEffect(() => {
+    listAll(ImgListRef).then((res) => {
+      setImageList(res);
+    })
+  }, [])
+
+  console.log(imageList)
 
   useEffect(() => {
     socket?.current.emit("addUser", user?._id);
