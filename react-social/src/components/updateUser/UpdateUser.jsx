@@ -63,11 +63,8 @@ export const UpdateUser = ({ userc }) => {
       console.log(file)
       setImageAsFile(imageAsFile => (image))
       try {
-        if (imageAsFile === null) {
-          return;
-        }
-        const imgRef = ref(storage, `images/${imageAsFile.name + v4()}`);
-        uploadBytes(imgRef, imageAsFile).then((res) => {
+        const imgRef = ref(storage, `images/${file.name + v4()}`);
+        uploadBytes(imgRef, file).then((res) => {
 
         })
 
