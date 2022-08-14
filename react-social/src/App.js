@@ -16,7 +16,6 @@ import TagUser from "./components/tagUser/TagUser";
 import { io } from "socket.io-client";
 import { storage } from "./pages/Firebase"
 import { ref, listAll } from 'firebase/storage'
-import { storage } from "../../pages/Firebase";
 import { v4 } from "uuid"
 
 
