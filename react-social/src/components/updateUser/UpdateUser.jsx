@@ -57,16 +57,15 @@ export const UpdateUser = ({ userc }) => {
       const FileName = Date.now() + file.name;
       data.append("name", FileName);
       data.append("file", file);
-      updatedUser.profilePicture = FileName;
 
       const image = file;
       console.log(file)
       setImageAsFile(imageAsFile => (image))
+      const imgRef = ref(storage, `images/${file.name + v4()}`);
+      uploadBytes(imgRef, file).then((res) => {
+        updatedUser.profilePicture = file.name + v4();
+      })
       try {
-        const imgRef = ref(storage, `images/${file.name + v4()}`);
-        uploadBytes(imgRef, file).then((res) => {
-
-        })
 
         await axiosInstance.post("/upload", data);
       } catch (err) {
@@ -111,7 +110,7 @@ export const UpdateUser = ({ userc }) => {
             <img
               src={
                 userc.profilePicture
-                  ? PF + userc.profilePicture
+                  ? userc.profilePicture
                   : PF + "noprofile.jpg"
               }
               alt=""
