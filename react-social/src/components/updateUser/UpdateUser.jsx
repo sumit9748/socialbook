@@ -62,8 +62,8 @@ export const UpdateUser = ({ userc }) => {
       console.log(file)
       setImageAsFile(imageAsFile => (image))
       const imgRef = ref(storage, `images/${file.name + v4()}`);
+      console.log(imgRef)
       uploadBytes(imgRef, file).then((res) => {
-        updatedUser.profilePicture = file.name + v4();
       })
       try {
 
