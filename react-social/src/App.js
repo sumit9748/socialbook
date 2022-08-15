@@ -33,10 +33,8 @@ function App() {
 
   useEffect(() => {
     const fetchImages = async () => {
-      let result = await storage.ref().child("images/").listAll();
-      let urlPromises = result.items.map((imageRef) =>
-        imageRef.getDownloadURL()
-      );
+      let result = await storageRef.child('images').listAll();
+      let urlPromises = result.items.map(imageRef => imageRef.getDownloadURL());
 
       return Promise.all(urlPromises);
     };
