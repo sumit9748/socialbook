@@ -39,8 +39,7 @@ function App() {
         })
       })
     })
-    localStorage.setItem('images', imageList);
-
+    localStorage.setItem('images', JSON.stringify(imageList));
   }
 
 
