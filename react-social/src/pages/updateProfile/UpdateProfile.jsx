@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { UpdateUser } from "../../components/updateUser/UpdateUser";
 import { axiosInstance } from "../../config";
 
-export const UpdateProfile = () => {
+export const UpdateProfile = ({ listItem }) => {
   const location = useLocation();
   const id = location.pathname.split("/")[2];
   // console.log(username);
@@ -24,7 +24,7 @@ export const UpdateProfile = () => {
   return (
     <div className="updateProfile">
       <Topbar />
-      <UpdateUser userc={user} />
+      <UpdateUser userc={user} listItem={listItem} />
     </div>
   );
 };

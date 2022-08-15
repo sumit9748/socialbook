@@ -11,7 +11,7 @@ import { v4 } from "uuid"
 import { imgFinder } from "../../pages/ImageHandler";
 //import { useFormControl } from "../../../../../expense-manager/client/node_modules/@mui/material";
 
-export const UpdateUser = ({ userc }) => {
+export const UpdateUser = ({ userc, listItem }) => {
   // console.log(userc.username);
   const { user } = useContext(AuthContext);
   const username = useRef();
@@ -88,6 +88,7 @@ export const UpdateUser = ({ userc }) => {
     }
     try {
       await axiosInstance.put("/users/" + user._id, updatedUser);
+      listItem();
       //updateUserInfo = { updateUserInfo };
       try {
         const res = await axiosInstance.get(`/users?userId=${userc._id}`);
@@ -122,7 +123,7 @@ export const UpdateUser = ({ userc }) => {
           </div>
           <div className="updateUserTopRight">
             <img
-              src={imgFinder(userc.profilePicture)}
+              src={""}
               alt=""
               className="imgContainer"
             />

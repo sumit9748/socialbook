@@ -16,7 +16,6 @@ import TagUser from "./components/tagUser/TagUser";
 import { io } from "socket.io-client";
 import { storage } from "./pages/Firebase"
 import { ref, listAll, getDownloadURL } from 'firebase/storage'
-import { v4 } from "uuid"
 
 
 function App() {
@@ -38,7 +37,9 @@ function App() {
     listAll(ImgListRef).then((res) => {
       res.items.forEach((item) => {
         getDownloadURL(item).then((url) => {
-          setImageList(prev => [...prev, url]);
+          setImageList((prev) => [...prev, url]);
+        }).catch((err) => {
+          console.log(err);
         })
       })
     })
@@ -67,7 +68,7 @@ function App() {
           <Profile />
         </Route>
         <Route path="/updateProfile/:userId">
-          <UpdateProfile />
+          <UpdateProfile listItem={listItem} />
         </Route>
         <Route path="/searchUser">
           <TagUser />
