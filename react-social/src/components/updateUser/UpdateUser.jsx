@@ -41,7 +41,7 @@ export const UpdateUser = ({ userc, listItem }) => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    const updatedUser = {
+    let updatedUser = {
       username: username.current.value
         ? username.current.value
         : userc.username,
@@ -79,7 +79,7 @@ export const UpdateUser = ({ userc, listItem }) => {
           dispatch({ type: "UPDATE_USER", payload: res.data });
         })
       })
-    }, 1000);
+    }, 3000);
 
     // window.location.reload();
   };
