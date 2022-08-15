@@ -12,7 +12,6 @@ import { axiosInstance } from "../../config";
 export default function Share() {
   const { user } = useContext(AuthContext);
 
-  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const desc = useRef();
 
   const [file, setFile] = useState(null);
@@ -30,12 +29,20 @@ export default function Share() {
       const fileName = Date.now() + file.name;
       data.append("name", fileName);
       data.append("file", file);
-      newPost.img = fileName;
-      console.log(newPost);
-      try {
-        await axiosInstance.post("/upload", data);
-      } catch (err) { }
+
+      const imgRef = ref(storage, `images/${file.name + Date.now()}`);
+
+      uploadBytes(imgRef, file).then(() => {
+        getDownloadURL(imgRef)
+          .then((url) => {
+            console.log(url)
+            newPost.profilePicture = String(url);
+            console.log(updatedUser)
+          })
+      })
+      // console.log(newPost);
     }
+
     try {
       await axiosInstance.post("/posts", newPost);
       window.location.reload();
@@ -52,8 +59,8 @@ export default function Share() {
             className="shareProfileImg"
             src={
               user.profilePicture
-                ? PF + user.profilePicture
-                : PF + "search.png"
+                ? user.profilePicture
+                : "https://i.pinimg.com/736x/d9/56/9b/d9569bbed4393e2ceb1af7ba64fdf86a.jpg"
             }
             alt=""
           />

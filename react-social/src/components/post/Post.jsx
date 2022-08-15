@@ -96,7 +96,7 @@ export default function Post({ post, deletePost, socket }) {
                 <div className="postTop">
                     <div className="postTopLeft">
                         <Link to={`Profile/${user.username}`}>
-                            <img className="postProfileImg" src={user.profilePicture ? PF + user.profilePicture : PF + "search.png"} alt="" />
+                            <img className="postProfileImg" src={user.profilePicture ? user.profilePicture : "https://i.pinimg.com/736x/d9/56/9b/d9569bbed4393e2ceb1af7ba64fdf86a.jpg"} alt="" />
                         </Link>
                         <span className="postUserName">{user.username}</span>
                         <span className="postDate">{format(post.createdAt)}</span>
@@ -131,7 +131,7 @@ export default function Post({ post, deletePost, socket }) {
                     <span className="postText">
                         {post?.desc}
                     </span>
-                    <img className="postImg" src={PF + post.img} alt="" />
+                    <img className="postImg" src={post?.img ? post?.img : ""} alt="" />
 
                 </div>
                 <div className="postBottom">
@@ -141,7 +141,7 @@ export default function Post({ post, deletePost, socket }) {
                         <span className="likeCounter">{like} people liked it</span>
                     </div>
                     <div className="postBottomRight">
-                        <span className="postCommentText" onClick={() => likeHandler("3")}>{post.comment} comments</span>
+                        <span className="postCommentText" onClick={() => likeHandler("3")}>{post?.comment} comments</span>
                     </div>
                 </div>
             </div>

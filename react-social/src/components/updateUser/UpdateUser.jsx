@@ -7,8 +7,6 @@ import { AuthContext } from "../../context/AuthContext";
 import { axiosInstance } from "../../config";
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
 import { storage } from "../../pages/Firebase";
-import { v4 } from "uuid"
-import { imgFinder } from "../../pages/ImageHandler";
 //import { useFormControl } from "../../../../../expense-manager/client/node_modules/@mui/material";
 
 export const UpdateUser = ({ userc, listItem }) => {
@@ -33,7 +31,6 @@ export const UpdateUser = ({ userc, listItem }) => {
     relationship = "others";
   }
 
-  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const [file, setFile] = useState(null);
 
   console.log(imageAsFile)
@@ -81,7 +78,7 @@ export const UpdateUser = ({ userc, listItem }) => {
       })
     }, 3000);
 
-    // window.location.reload();
+    window.location.reload();
   };
 
   return (
@@ -109,7 +106,8 @@ export const UpdateUser = ({ userc, listItem }) => {
           </div>
           <div className="updateUserTopRight">
             <img
-              src={userc.profilePicture ? userc.profilePicture : ""}
+              src={userc.profilePicture ? userc.profilePicture :
+                "https://i.pinimg.com/736x/d9/56/9b/d9569bbed4393e2ceb1af7ba64fdf86a.jpg"}
               alt=""
               className="imgContainer"
             />
