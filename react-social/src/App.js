@@ -30,11 +30,24 @@ function App() {
   }, [])
 
   const [imageList, setImageList] = useState([]);
+
   useEffect(() => {
-    listAll(ImgListRef).then((res) => {
-      setImageList(res);
-    })
-  }, [])
+    const fetchImages = async () => {
+      let result = await storage.ref().child("images/").listAll();
+      let urlPromises = result.items.map((imageRef) =>
+        imageRef.getDownloadURL()
+      );
+
+      return Promise.all(urlPromises);
+    };
+
+    const loadImages = async () => {
+      const urls = await fetchImages();
+      setImageList(urls);
+    };
+    loadImages();
+  }, []);
+
 
   console.log(imageList)
 
