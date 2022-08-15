@@ -26,25 +26,22 @@ function App() {
   const ImgListRef = ref(storage, "images/");
   useEffect(() => {
     socket.current = io("https://socialbooksumit.herokuapp.com/");
-
+    listItem();
   }, [])
 
   const [imageList, setImageList] = useState([]);
 
-  useEffect(() => {
-    const fetchImages = async () => {
-      let result = await storage.ref.child('images').listAll();
-      let urlPromises = result.items.map(imageRef => imageRef.getDownloadURL());
-
-      return Promise.all(urlPromises);
-    };
-
-    const loadImages = async () => {
-      const urls = await fetchImages();
-      setImageList(urls);
-    };
-    loadImages();
-  }, []);
+  const listItem = () => {
+    ImgListRef.listAll()
+      .then(res => {
+        res.items.forEach((item) => {
+          setImageList(arr => [...arr, item.name]);
+        })
+      })
+      .catch(err => {
+        alert(err.message);
+      })
+  }
 
 
   console.log(imageList)
