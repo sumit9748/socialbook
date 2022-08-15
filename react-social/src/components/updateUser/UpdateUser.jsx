@@ -5,7 +5,7 @@ import { useContext, useState } from "react";
 import { useRef } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { axiosInstance } from "../../config";
-import { ref, uploadBytes } from 'firebase/storage'
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
 import { storage } from "../../pages/Firebase";
 import { v4 } from "uuid"
 import { imgFinder } from "../../pages/ImageHandler";
