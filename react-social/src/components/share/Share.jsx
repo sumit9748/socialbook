@@ -41,11 +41,13 @@ export default function Share() {
       })
       // console.log(newPost);
     }
+    setTimeout(() => {
+      axiosInstance.post("/posts", newPost).then(() => {
+        window.location.reload();
 
-    axiosInstance.post("/posts", newPost).then(() => {
-      window.location.reload();
+      })
+    }, 2000);
 
-    })
   };
 
 
