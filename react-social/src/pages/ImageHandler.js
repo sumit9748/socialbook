@@ -1,4 +1,4 @@
-let getImages = JSON.parse(localStorage.getItem('images'));
+const getImages = localStorage.getItem('images');
 console.log(getImages);
 
 
