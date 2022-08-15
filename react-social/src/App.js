@@ -29,7 +29,6 @@ function App() {
     socket.current = io("https://socialbooksumit.herokuapp.com/");
     listItem();
     console.log(imageList)
-    localStorage.setItem('images', JSON.stringify(imageList));
   }, [])
 
 
@@ -38,6 +37,7 @@ function App() {
       res.items.forEach((item) => {
         getDownloadURL(item).then((url) => {
           setImageList((prev) => [...prev, url]);
+          localStorage.setItem('images', JSON.stringify(imageList));
         }).catch((err) => {
           console.log(err);
         })

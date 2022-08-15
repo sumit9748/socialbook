@@ -21,9 +21,7 @@ export const UpdateUser = ({ userc, listItem }) => {
   const relation = useRef();
   const { dispatch } = useContext(AuthContext);
 
-  const allInputs = { imgUrl: '' }
   const [imageAsFile, setImageAsFile] = useState('')
-  const [imageAsUrl, setImageAsUrl] = useState(allInputs)
 
   let relationship;
 
@@ -40,16 +38,6 @@ export const UpdateUser = ({ userc, listItem }) => {
 
   console.log(imageAsFile)
 
-  const imgUrlMaker = (FileName) => {
-    let ans = "";
-    ans += "https://firebasestorage.googleapis.com/v0/b/socialmeo-c671e.appspot.com/o/images%2F";
-    for (let i = 0; i < FileName.length; i++) {
-      if (FileName[i] === ' ') ans += '%20';
-      else ans += FileName[i];
-    }
-    console.log(ans);
-    return ans;
-  }
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -69,15 +57,17 @@ export const UpdateUser = ({ userc, listItem }) => {
       const FileName = file.name + Date.now();
       data.append("name", FileName);
       data.append("file", file);
-      updatedUser.profilePicture = imgUrlMaker(FileName);
 
       const image = file;
       console.log(file)
       setImageAsFile(imageAsFile => (image))
       const imgRef = ref(storage, `images/${file.name + Date.now()}`);
 
-
       uploadBytes(imgRef, file).then((res) => {
+        storage.ref('images').child(file.name + Date.now()).getDownloadURL()
+          .then((url) => {
+            updatedUser.profilePicture = url;
+          })
       })
       try {
 
