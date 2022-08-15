@@ -79,7 +79,7 @@ export const UpdateUser = ({ userc }) => {
         const res = await axiosInstance.get(`/users?userId=${userc._id}`);
         dispatch({ type: "UPDATE_USER", payload: res.data });
       } catch (err) { }
-      window.location.reload();
+      // window.location.reload();
     } catch (err) { }
   };
 
