@@ -73,8 +73,8 @@ export const UpdateUser = ({ userc, listItem }) => {
 
     }
 
-    await axiosInstance.put("/users/" + user._id, updatedUser).then(() => {
-      await axiosInstance.get(`/users?userId=${userc._id}`).then((res) => {
+    axiosInstance.put("/users/" + user._id, updatedUser).then(() => {
+      axiosInstance.get(`/users?userId=${userc._id}`).then((res) => {
         dispatch({ type: "UPDATE_USER", payload: res.data });
       })
     })
