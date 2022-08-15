@@ -29,6 +29,7 @@ function App() {
   useEffect(() => {
     socket.current = io("https://socialbooksumit.herokuapp.com/");
     listItem();
+    console.log(imageList)
     localStorage.setItem('images', JSON.stringify(imageList));
   }, [])
 
