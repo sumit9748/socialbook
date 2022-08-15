@@ -8,6 +8,7 @@ import { axiosInstance } from "../../config";
 import { ref, uploadBytes } from 'firebase/storage'
 import { storage } from "../../pages/Firebase";
 import { v4 } from "uuid"
+import { imgFinder } from "../../pages/ImageHandler";
 //import { useFormControl } from "../../../../../expense-manager/client/node_modules/@mui/material";
 
 export const UpdateUser = ({ userc }) => {
@@ -116,16 +117,12 @@ export const UpdateUser = ({ userc }) => {
             </div>
             <div className="updateUserItem">
               <label className="updateUserKey">RelationShip Stats:-</label>
-              <span className="updateUserValue">{relationship}</span>
+              <span className="updateUserValue">{userc.relationship}</span>
             </div>
           </div>
           <div className="updateUserTopRight">
             <img
-              src={
-                userc.profilePicture
-                  ? userc.profilePicture
-                  : PF + "noprofile.jpg"
-              }
+              src={imgFinder(userc.profilePicture)}
               alt=""
               className="imgContainer"
             />

@@ -39,10 +39,10 @@ function App() {
         })
       })
     })
+    localStorage.setItem('images', imageList);
+
   }
 
-
-  console.log(imageList)
 
   useEffect(() => {
     socket?.current.emit("addUser", user?._id);
