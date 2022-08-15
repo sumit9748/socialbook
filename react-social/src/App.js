@@ -15,7 +15,7 @@ import { UpdateProfile } from "./pages/updateProfile/UpdateProfile";
 import TagUser from "./components/tagUser/TagUser";
 import { io } from "socket.io-client";
 import { storage } from "./pages/Firebase"
-import { ref, listAll } from 'firebase/storage'
+import { ref, listAll, getDownloadURL } from 'firebase/storage'
 import { v4 } from "uuid"
 
 
@@ -32,15 +32,13 @@ function App() {
   const [imageList, setImageList] = useState([]);
 
   const listItem = () => {
-    storage.ref().child('images/').listAll()
-      .then(res => {
-        res.items.forEach((item) => {
-          setImageList(arr => [...arr, item.name]);
+    listAll(ImgListRef).then((res) => {
+      res.items.forEach((item) => {
+        getDownloadURL(item).then((url) => {
+          setImageList(prev => [...prev, url]);
         })
       })
-      .catch(err => {
-        alert(err.message);
-      })
+    })
   }
 
 
