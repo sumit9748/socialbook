@@ -8,6 +8,8 @@ import { useContext, useRef, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { ChildModal } from "../modal/modalcomponent";
 import { axiosInstance } from "../../config";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { storage } from "../../pages/Firebase";
 
 export default function Share() {
   const { user } = useContext(AuthContext);
@@ -36,8 +38,7 @@ export default function Share() {
         getDownloadURL(imgRef)
           .then((url) => {
             console.log(url)
-            newPost.profilePicture = String(url);
-            console.log(updatedUser)
+            newPost.img = String(url);
           })
       })
       // console.log(newPost);
