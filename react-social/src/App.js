@@ -32,7 +32,7 @@ function App() {
   const [imageList, setImageList] = useState([]);
 
   const listItem = () => {
-    ImgListRef.listAll()
+    storage.ref().child('images/').listAll()
       .then(res => {
         res.items.forEach((item) => {
           setImageList(arr => [...arr, item.name]);
