@@ -22,14 +22,16 @@ import { v4 } from "uuid"
 function App() {
   const { user } = useContext(AuthContext);
   const socket = useRef();
+  const [imageList, setImageList] = useState([]);
+
 
   const ImgListRef = ref(storage, "images/");
   useEffect(() => {
     socket.current = io("https://socialbooksumit.herokuapp.com/");
     listItem();
+    localStorage.setItem('images', JSON.stringify(imageList));
   }, [])
 
-  const [imageList, setImageList] = useState([]);
 
   const listItem = () => {
     listAll(ImgListRef).then((res) => {
@@ -39,7 +41,6 @@ function App() {
         })
       })
     })
-    localStorage.setItem('images', JSON.stringify(imageList));
   }
 
 
