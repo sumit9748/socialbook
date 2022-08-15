@@ -39,6 +39,17 @@ export const UpdateUser = ({ userc }) => {
 
   console.log(imageAsFile)
 
+  const imgUrlMaker = (FileName) => {
+    let ans = "";
+    ans += "https://firebasestorage.googleapis.com/v0/b/socialmeo-c671e.appspot.com/o/images%2F";
+    for (let i = 0; i < FileName.length; i++) {
+      if (FileName[i] === ' ') ans += '%20';
+      else ans += FileName[i];
+    }
+    console.log(ans);
+    return ans;
+  }
+
   const submitHandler = async (e) => {
     e.preventDefault();
     const updatedUser = {
@@ -54,15 +65,17 @@ export const UpdateUser = ({ userc }) => {
     };
     if (file) {
       const data = new FormData();
-      const FileName = Date.now() + file.name;
+      const FileName = file.name + Date.now();
       data.append("name", FileName);
       data.append("file", file);
+      updatedUser.profilePicture = imgUrlMaker(FileName);
 
       const image = file;
       console.log(file)
       setImageAsFile(imageAsFile => (image))
-      const imgRef = ref(storage, `images/${file.name + v4()}`);
-      console.log(imgRef)
+      const imgRef = ref(storage, `images/${file.name + Date.now()}`);
+
+
       uploadBytes(imgRef, file).then((res) => {
       })
       try {
