@@ -67,18 +67,20 @@ export const UpdateUser = ({ userc, listItem }) => {
         getDownloadURL(imgRef)
           .then((url) => {
             console.log(url)
-            updatedUser.profilePicture = url;
+            updatedUser.profilePicture = String(url);
           })
       })
 
     }
-
-    axiosInstance.put("/users/" + user._id, updatedUser).then(() => {
-      axiosInstance.get(`/users?userId=${userc._id}`).then((res) => {
-        dispatch({ type: "UPDATE_USER", payload: res.data });
+    setTimeout(() => {
+      axiosInstance.put("/users/" + user._id, updatedUser).then(() => {
+        axiosInstance.get(`/users?userId=${userc._id}`).then((res) => {
+          dispatch({ type: "UPDATE_USER", payload: res.data });
+        })
       })
-    })
-    window.location.reload();
+    }, 2000);
+
+    // window.location.reload();
   };
 
   return (
