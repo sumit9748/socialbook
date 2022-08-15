@@ -70,23 +70,15 @@ export const UpdateUser = ({ userc, listItem }) => {
             updatedUser.profilePicture = url;
           })
       })
-      try {
 
-        await axiosInstance.post("/upload", data);
-      } catch (err) {
-        console.log(err);
-      }
     }
-    try {
-      await axiosInstance.put("/users/" + user._id, updatedUser);
-      listItem();
-      //updateUserInfo = { updateUserInfo };
-      try {
-        const res = await axiosInstance.get(`/users?userId=${userc._id}`);
+
+    await axiosInstance.put("/users/" + user._id, updatedUser).then(() => {
+      await axiosInstance.get(`/users?userId=${userc._id}`).then((res) => {
         dispatch({ type: "UPDATE_USER", payload: res.data });
-      } catch (err) { }
-      // window.location.reload();
-    } catch (err) { }
+      })
+    })
+    window.location.reload();
   };
 
   return (
