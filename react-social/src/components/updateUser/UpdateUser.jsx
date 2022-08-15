@@ -63,9 +63,10 @@ export const UpdateUser = ({ userc, listItem }) => {
       setImageAsFile(imageAsFile => (image))
       const imgRef = ref(storage, `images/${file.name + Date.now()}`);
 
-      uploadBytes(imgRef, file).then((res) => {
-        getDownloadURL(ref(storage, `images/${file.name + Date.now()}`))
+      uploadBytes(imgRef, file).then(() => {
+        getDownloadURL(imgRef)
           .then((url) => {
+            console.log(url)
             updatedUser.profilePicture = url;
           })
       })
