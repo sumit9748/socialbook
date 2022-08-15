@@ -76,9 +76,9 @@ export const UpdateUser = ({ userc, listItem }) => {
           dispatch({ type: "UPDATE_USER", payload: res.data });
         })
       })
-    }, 3000);
+    }, 2000);
 
-    window.location.reload();
+    // window.location.reload();
   };
 
   return (
