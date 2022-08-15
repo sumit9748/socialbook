@@ -68,6 +68,7 @@ export const UpdateUser = ({ userc, listItem }) => {
           .then((url) => {
             console.log(url)
             updatedUser.profilePicture = String(url);
+            console.log(updatedUser)
           })
       })
 
@@ -78,7 +79,7 @@ export const UpdateUser = ({ userc, listItem }) => {
           dispatch({ type: "UPDATE_USER", payload: res.data });
         })
       })
-    }, 2000);
+    }, 1000);
 
     // window.location.reload();
   };
@@ -108,7 +109,7 @@ export const UpdateUser = ({ userc, listItem }) => {
           </div>
           <div className="updateUserTopRight">
             <img
-              src={""}
+              src={userc.profilePicture ? userc.profilePicture : ""}
               alt=""
               className="imgContainer"
             />
