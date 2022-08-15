@@ -23,12 +23,10 @@ export default function Share() {
     const newPost = {
       userId: user._id,
       desc: desc.current.value + "",
-
-
     };
     if (file) {
       const data = new FormData();
-      const fileName = Date.now() + file.name;
+      const fileName = file.name + Date.now();
       data.append("name", fileName);
       data.append("file", file);
 
@@ -44,10 +42,10 @@ export default function Share() {
       // console.log(newPost);
     }
 
-    try {
-      await axiosInstance.post("/posts", newPost);
+    axiosInstance.post("/posts", newPost).then(() => {
       window.location.reload();
-    } catch (err) { }
+
+    })
   };
 
 

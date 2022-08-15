@@ -70,13 +70,11 @@ export const UpdateUser = ({ userc, listItem }) => {
       })
 
     }
-    setTimeout(() => {
-      axiosInstance.put("/users/" + user._id, updatedUser).then(() => {
-        axiosInstance.get(`/users?userId=${userc._id}`).then((res) => {
-          dispatch({ type: "UPDATE_USER", payload: res.data });
-        })
+    axiosInstance.put("/users/" + user._id, updatedUser).then(() => {
+      axiosInstance.get(`/users?userId=${userc._id}`).then((res) => {
+        dispatch({ type: "UPDATE_USER", payload: res.data });
       })
-    }, 2000);
+    })
 
     // window.location.reload();
   };
