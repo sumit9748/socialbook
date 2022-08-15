@@ -54,7 +54,6 @@ export default function Topbar({ text, setText, socket }) {
   };
 
 
-  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   return (
     <div className="topbar-container">
       <div className="topbarLeft">
@@ -116,8 +115,8 @@ export default function Topbar({ text, setText, socket }) {
           <img
             src={
               user.profilePicture
-                ? PF + user.profilePicture
-                : PF + "search.png"
+                ? user.profilePicture
+                : "https://i.pinimg.com/736x/d9/56/9b/d9569bbed4393e2ceb1af7ba64fdf86a.jpg"
             }
             alt=""
             className="topbarImg"

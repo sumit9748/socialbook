@@ -6,7 +6,6 @@ import { AuthContext } from "../../context/AuthContext";
 import { axiosInstance } from "../../config";
 
 export default function Message({ message, own, friend }) {
-  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const [friendst, setFriendst] = useState([])
   const { user } = useContext(AuthContext)
 
@@ -23,7 +22,7 @@ export default function Message({ message, own, friend }) {
       <div className="messageTop">
         <img
           className="messageImg"
-          src={own ? PF + user.profilePicture : PF + friendst.profilePicture}
+          src={own ? user.profilePicture : friendst.profilePicture}
           alt=""
         />
         <p className="messageText">{message.text}</p>

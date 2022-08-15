@@ -8,7 +8,6 @@ import Remove from "@mui/icons-material/Remove";
 import { axiosInstance } from "../../config";
 
 export default function Rightbar({ user, socket }) {
-  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const [friends, setFriends] = useState([]);
   const { user: currentUser, dispatch } = useContext(AuthContext);
   //console.log(currentUser);
@@ -123,8 +122,8 @@ export default function Rightbar({ user, socket }) {
                 <img
                   src={
                     friend.profilePicture
-                      ? PF + friend.profilePicture
-                      : PF + "search.png"
+                      ? friend.profilePicture
+                      : "https://i.pinimg.com/736x/d9/56/9b/d9569bbed4393e2ceb1af7ba64fdf86a.jpg"
                   }
                   alt=""
                   className="rightbarFollowingImg"

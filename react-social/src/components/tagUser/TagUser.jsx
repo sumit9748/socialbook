@@ -7,7 +7,6 @@ import Topbar from "../topbar/Topbar"
 import { AuthContext } from '../../context/AuthContext';
 import { axiosInstance } from '../../config';
 const TagUser = () => {
-    const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
     const [search, setSearch] = useState("");
     const [allusers, setAllusers] = useState([])
@@ -40,7 +39,7 @@ const TagUser = () => {
                 <div >
                     {allusers?.map((all) => (
                         <Link to={`/profile/${all._id}`}>  <div className='tagUserEdit'>
-                            <Avatar alt={all.username} src={all.profilePicture ? PF + all.profilePicture : PF + "search.png"} />
+                            <Avatar alt={all.username} src={all.profilePicture ? all.profilePicture : "https://i.pinimg.com/736x/d9/56/9b/d9569bbed4393e2ceb1af7ba64fdf86a.jpg"} />
                             <span>{all.username}</span>
 
                         </div>

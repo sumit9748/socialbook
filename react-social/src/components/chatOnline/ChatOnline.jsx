@@ -5,7 +5,6 @@ import "./chatOnline.css";
 export default function ChatOnline({ onlineUsers, currentId, setCurrentChat }) {
   const [friends, setFriends] = useState([]);
   const [onlineFriends, setOnlineFriends] = useState([]);
-  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
   useEffect(() => {
     const getFriends = async () => {
@@ -52,8 +51,8 @@ export default function ChatOnline({ onlineUsers, currentId, setCurrentChat }) {
               className="chatOnlineImg"
               src={
                 o?.profilePicture
-                  ? PF + o.profilePicture
-                  : PF + "person/noAvatar.png"
+                  ? o.profilePicture
+                  : "https://i.pinimg.com/736x/d9/56/9b/d9569bbed4393e2ceb1af7ba64fdf86a.jpg"
               }
               alt=""
             />

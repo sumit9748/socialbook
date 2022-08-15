@@ -33,7 +33,6 @@ export default function Post({ post, deletePost, socket }) {
     const [isLiked, setisLiked] = useState(false);
     const [user, setUser] = useState({});
 
-    const PF = process.env.REACT_APP_PUBLIC_FOLDER;
     const { user: currentUser } = useContext(AuthContext);
 
     useEffect(() => {
@@ -136,8 +135,8 @@ export default function Post({ post, deletePost, socket }) {
                 </div>
                 <div className="postBottom">
                     <div className="postBottomLeft">
-                        <img className="likeIcon" src={`${PF}like.png`} onClick={() => likeHandler("1")} alt="" />
-                        <img className="heartIcon" src={`${PF}heart.png`} onClick={() => likeHandler("2")} alt="" />
+                        <img className="likeIcon" src={"https://pngimg.com/uploads/like/small/like_PNG63.png"} onClick={() => likeHandler("1")} alt="" />
+                        <img className="heartIcon" src={"https://png.pngtree.com/png-vector/20220411/ourmid/pngtree-glossy-heart-best-vector-ai-and-png-png-image_4538478.png"} onClick={() => likeHandler("2")} alt="" />
                         <span className="likeCounter">{like} people liked it</span>
                     </div>
                     <div className="postBottomRight">

@@ -9,7 +9,6 @@ import { AuthContext } from "../../context/AuthContext";
 import { axiosInstance } from "../../config";
 
 export default function Profile() {
-  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const [user, setUser] = useState({});
   const location = useLocation();
   const id = location.pathname.split("/")[2];
@@ -36,7 +35,7 @@ export default function Profile() {
               <img
                 className="profileCoverImg"
                 src={
-                  user.coverPicture ? PF + user.coverPicture : PF + "search.png"
+                  user.coverPicture ? user.coverPicture : "https://i.pinimg.com/736x/d9/56/9b/d9569bbed4393e2ceb1af7ba64fdf86a.jpg"
                 }
                 alt=""
               />{(user._id === currentUser._id) ? (
@@ -45,8 +44,8 @@ export default function Profile() {
                     className="profileUserImg"
                     src={
                       user.profilePicture
-                        ? PF + user.profilePicture
-                        : PF + "noprofile.pg"
+                        ? user.profilePicture
+                        : "https://i.pinimg.com/736x/d9/56/9b/d9569bbed4393e2ceb1af7ba64fdf86a.jpg"
                     }
                     alt=""
                   />
@@ -56,8 +55,8 @@ export default function Profile() {
                   className="profileUserImg"
                   src={
                     user.profilePicture
-                      ? PF + user.profilePicture
-                      : PF + "noprofile.pg"
+                      ? user.profilePicture
+                      : "https://i.pinimg.com/736x/d9/56/9b/d9569bbed4393e2ceb1af7ba64fdf86a.jpg"
                   }
                   alt=""
                 />
