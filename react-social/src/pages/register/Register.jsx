@@ -26,12 +26,11 @@ export default function Register() {
             }
             try {
                 await axiosInstance.post("/auth/register", user);
-                <Snackbar open={true} message={"Registration Done successfully.."} />
+                <SnackbarRegister open={true} message={"Registration Done successfully.."} />
                 history.push("/login");
 
             } catch (err) {
-                <Snackbar open={true} message={"Something Went Wrong.."} />
-
+                <SnackbarRegister open={true} message={"Something Went Wrong.."} />
             }
         }
     };
@@ -56,7 +55,7 @@ export default function Register() {
         </div>
     )
 }
-export const Snackbar = ({ open, message }) => {
+export const SnackbarRegister = ({ open, message }) => {
 
 
     <Snackbar open={open} autoHideDuration={6000}>
