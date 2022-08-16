@@ -112,9 +112,14 @@ io.on("connection", (socket) => {
   });
 
 
-  socket.on("sendNotification", ({ senderName, receiverId, type }) => {
+  socket.on("sendNotification", ({ senderName, receiverId, type, message }) => {
     const receiver = getUser(receiverId);
-    io.to(receiver.socketId).emit("getNotification", { senderName, type })
+    if (type !== '3') {
+      io.to(receiver.socketId).emit("getNotification", { senderName, type })
+    } else {
+      io.to(receiver.socketId).emit("getNotification", { senderName, type, message })
+    }
+
   })
 
   //when disconnect

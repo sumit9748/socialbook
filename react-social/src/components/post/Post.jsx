@@ -10,6 +10,11 @@ import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
 import Cancel from '@mui/icons-material/Cancel'
 import { axiosInstance } from "../../config";
+import Accordion from '@mui/material/Accordion';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import Typography from '@mui/material/Typography';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 
 const style = {
@@ -51,7 +56,7 @@ export default function Post({ post, deletePost, socket }) {
 
 
     const likeHandler = async (type) => {
-        if (type === 1) {
+        if (type === '1') {
             try {
                 axiosInstance.put("/posts/" + post._id + "/like", { userId: currentUser._id })
             } catch (err) {
@@ -64,7 +69,7 @@ export default function Post({ post, deletePost, socket }) {
         socket?.current?.emit("sendNotification", {
             senderName: currentUser.username,
             receiverId: post.userId,
-            type: type ? type : 1,
+            type: type,
         })
     };
 
@@ -87,6 +92,8 @@ export default function Post({ post, deletePost, socket }) {
     const handleClose = () => {
         setIsOpen(false);
     }
+
+
 
 
     return (
@@ -140,10 +147,47 @@ export default function Post({ post, deletePost, socket }) {
                         <span className="likeCounter">{like} people liked it</span>
                     </div>
                     <div className="postBottomRight">
-                        <span className="postCommentText" onClick={() => likeHandler("3")}>{post?.comment} comments</span>
+                        <span className="postCommentText" ><AccordianComments post={post} socket={socket} currentUser={currentUser} /></span>
                     </div>
                 </div>
             </div>
         </div>
+    )
+}
+
+export const AccordianComments = ({ post, socket, currentUser }) => {
+    const [expanded, setExpanded] = React.useState(false);
+
+    const handleChange = (panel) => (event, isExpanded) => {
+        setExpanded(isExpanded ? panel : false);
+    };
+    const [comment, setComment] = useState("");
+
+    const sendComment = (type) => {
+        socket?.current?.emit("sendNotification", {
+            senderName: currentUser.username,
+            receiverId: post.userId,
+            type: type,
+            message: comment,
+        })
+    }
+
+    return (
+        <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
+            <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1bh-content"
+                id="panel1bh-header"
+            >
+                <Typography sx={{ width: '33%', flexShrink: 0 }}>
+                    Comments
+                </Typography>
+                <Typography sx={{ color: 'text.secondary' }}></Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+                <input type="text" style={{ display: "flex", width: "90%" }} onChange={(e) => setComment(e.target.value)} />
+                <button onClick={() => sendComment('3')}>Send</button>
+            </AccordionDetails>
+        </Accordion>
     )
 }

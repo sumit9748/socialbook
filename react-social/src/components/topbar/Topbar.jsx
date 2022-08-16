@@ -26,15 +26,15 @@ export default function Topbar({ text, setText, socket }) {
   }, [socket]);
 
 
-  const displayNotification = ({ senderName, type }) => {
+  const displayNotification = ({ senderName, type, message }) => {
     let action;
 
-    if (type === 1) {
+    if (type == 1) {
       action = "liked";
-    } else if (type === 2) {
+    } else if (type == 2) {
       action = "loved";
     } else {
-      action = "shared";
+      action = `${message}`;
     }
     return (
       <span className="notification">{`${senderName} ${action} your post.`}</span>
