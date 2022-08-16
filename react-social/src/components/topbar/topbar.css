@@ -46,9 +46,13 @@ font-size: 14px;
 cursor:pointer;
 list-style: none;
 color:white;
-text-Decoration: "none";
+text-decoration: "none";
 
 }
+.topbarLinks:link { text-decoration: none; }
+.topbarLinks:visited { text-decoration: none; }
+.topbarLinks:hover { text-decoration: none; }
+.topbarLinks:active { text-decoration: none; }
 .topbarLink{
     margin:0 10px;
 }

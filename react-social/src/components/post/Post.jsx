@@ -145,8 +145,11 @@ export default function Post({ post, deletePost, socket }) {
                         <img className="likeIcon" src={"https://pngimg.com/uploads/like/small/like_PNG63.png"} onClick={() => likeHandler("1")} alt="" />
                         <img className="heartIcon" src={"https://png.pngtree.com/png-vector/20220411/ourmid/pngtree-glossy-heart-best-vector-ai-and-png-png-image_4538478.png"} onClick={() => likeHandler("2")} alt="" />
                         <span className="likeCounter">{like} people liked it</span>
-                        <span className="postCommentText" ><AccordianComments post={post} socket={socket} currentUser={currentUser} /></span>
                     </div>
+
+                </div>
+                <div className="postBottomRight">
+                    <span className="postCommentText" ><AccordianComments post={post} socket={socket} currentUser={currentUser} /></span>
                 </div>
             </div>
         </div>
@@ -171,7 +174,7 @@ export const AccordianComments = ({ post, socket, currentUser }) => {
     }
 
     return (
-        <Accordion expanded={expanded === 'panel1'} sx={{ backgroundColor: " black" }} onChange={handleChange('panel1')}>
+        <Accordion expanded={expanded === 'panel1'} sx={{ backgroundColor: " black", color: "white" }} onChange={handleChange('panel1')}>
             <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel1bh-content"

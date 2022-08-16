@@ -40,7 +40,7 @@ const TagUser = () => {
                     {allusers?.map((all) => (
                         <Link to={`/profile/${all._id}`}>  <div className='tagUserEdit'>
                             <Avatar alt={all.username} src={all.profilePicture ? all.profilePicture : "https://i.pinimg.com/736x/d9/56/9b/d9569bbed4393e2ceb1af7ba64fdf86a.jpg"} />
-                            <span>{all.username}</span>
+                            <a className="linksTag">{all.username}</a>
 
                         </div>
                         </Link>

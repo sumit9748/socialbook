@@ -32,3 +32,6 @@
     text-decoration: none;
     text-underline-offset: white;
   }
+  .linksTag,:focus,:hover,:active{
+    text-decoration: none;
+  }
