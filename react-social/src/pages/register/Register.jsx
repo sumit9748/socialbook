@@ -3,6 +3,8 @@ import { useRef } from "react";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router";
 import { axiosInstance } from "../../config";
+import Snackbar from '@mui/material/Snackbar';
+import Alert from "@mui/material/Alert";
 
 export default function Register() {
     const username = useRef();
@@ -10,6 +12,7 @@ export default function Register() {
     const password = useRef();
     const passwordAgain = useRef();
     const history = useHistory();
+
 
     const handleClick = async (e) => {
         e.preventDefault();
@@ -23,10 +26,12 @@ export default function Register() {
             }
             try {
                 await axiosInstance.post("/auth/register", user);
+                <Snackbar open={true} message={"Registration Done successfully.."} />
                 history.push("/login");
 
             } catch (err) {
-                console.log(err);
+                <Snackbar open={true} message={"Something Went Wrong.."} />
+
             }
         }
     };
@@ -50,4 +55,13 @@ export default function Register() {
             </div>
         </div>
     )
+}
+export const Snackbar = ({ open, message }) => {
+
+
+    <Snackbar open={open} autoHideDuration={6000}>
+        <Alert severity="success" sx={{ width: '100%' }}>
+            {`${message}`}
+        </Alert>
+    </Snackbar>
 }
