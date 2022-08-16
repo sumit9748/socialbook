@@ -21,29 +21,12 @@ import { ref, listAll, getDownloadURL } from 'firebase/storage'
 function App() {
   const { user } = useContext(AuthContext);
   const socket = useRef();
-  const [imageList, setImageList] = useState([]);
 
 
-  const ImgListRef = ref(storage, "images/");
   useEffect(() => {
     socket.current = io("https://socialbooksumit.herokuapp.com/");
-    listItem();
-    console.log(imageList)
   }, [])
 
-
-  const listItem = () => {
-    listAll(ImgListRef).then((res) => {
-      res.items.forEach((item) => {
-        getDownloadURL(item).then((url) => {
-          setImageList((prev) => [...prev, url]);
-          localStorage.setItem('images', JSON.stringify(imageList));
-        }).catch((err) => {
-          console.log(err);
-        })
-      })
-    })
-  }
 
 
   useEffect(() => {
@@ -68,7 +51,7 @@ function App() {
           <Profile />
         </Route>
         <Route path="/updateProfile/:userId">
-          <UpdateProfile listItem={listItem} />
+          <UpdateProfile />
         </Route>
         <Route path="/searchUser">
           <TagUser />

@@ -44,6 +44,9 @@ color:white;
 margin-right: 10px;
 font-size: 14px;
 cursor:pointer;
+list-style: none;
+color:white;
+text-Decoration: "none";
 
 }
 .topbarLink{
