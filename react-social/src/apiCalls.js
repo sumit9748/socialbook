@@ -1,7 +1,13 @@
 import { axiosInstance } from "./config";
 import Snackbar from '@mui/material/Snackbar';
 import { Alert } from "@mui/material";
+import React from "react";
+import MuiAlert from '@mui/material/Alert';
 
+
+const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 export const loginCall = async (userCredential, dispatch) => {
     dispatch({ type: "LOGIN_START" });
@@ -19,8 +25,6 @@ export const loginCall = async (userCredential, dispatch) => {
 };
 
 export const SnackbarLogin = ({ open, message }) => {
-
-
     <Snackbar open={open} autoHideDuration={6000}>
         <Alert severity="success" sx={{ width: '100%' }}>
             {`${message}`}
