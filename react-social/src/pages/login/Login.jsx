@@ -3,8 +3,7 @@ import { useRef, useContext } from "react";
 import { loginCall } from "../../apiCalls";
 import { AuthContext } from "../../context/AuthContext";
 import CircularProgress from '@mui/material/CircularProgress';
-import Snackbar from '@mui/material/Snackbar';
-import { Alert } from "@mui/material";
+
 
 export default function Login() {
 
@@ -15,11 +14,7 @@ export default function Login() {
 
     const handleClick = (e) => {
         e.preventDefault();
-        loginCall({ email: email.current.value, password: password.current.value }, dispatch).then((res) => {
-            <SnackbarLogin open={true} res={res} />
-        }).catch((err) => {
-            <SnackbarLogin open={true} err={err} />
-        })
+        loginCall({ email: email.current.value, password: password.current.value }, dispatch)
     };
     console.log(user);
     return (
@@ -43,12 +38,3 @@ export default function Login() {
     )
 }
 
-export const SnackbarLogin = ({ open, message }) => {
-
-
-    <Snackbar open={open} autoHideDuration={6000}>
-        <Alert severity="success" sx={{ width: '100%' }}>
-            {`${message}`}
-        </Alert>
-    </Snackbar>
-}
