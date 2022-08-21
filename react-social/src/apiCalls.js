@@ -2,7 +2,6 @@ import { axiosInstance } from "./config";
 import Snackbar from '@mui/material/Snackbar';
 import { Alert } from "@mui/material";
 import React from "react";
-import MuiAlert from '@mui/material/Alert'; mn
 
 export const loginCall = async (userCredential, dispatch) => {
     dispatch({ type: "LOGIN_START" });
