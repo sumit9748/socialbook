@@ -2,32 +2,26 @@ import { axiosInstance } from "./config";
 import Snackbar from '@mui/material/Snackbar';
 import { Alert } from "@mui/material";
 import React from "react";
-import MuiAlert from '@mui/material/Alert';
-
-
-const Alert = React.forwardRef(function Alert(props, ref) {
-    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-});
+import MuiAlert from '@mui/material/Alert'; mn
 
 export const loginCall = async (userCredential, dispatch) => {
     dispatch({ type: "LOGIN_START" });
-    try {
-        const res = await axiosInstance.post("auth/login", userCredential)
+
+    const res = await axiosInstance.post("auth/login", userCredential).then((res) => {
+        <Snackbar open={true} autoHideDuration={6000}>
+            <Alert severity="success" sx={{ width: '100%' }}>
+                {`${res}`}
+            </Alert>
+        </Snackbar>
         dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
-        <SnackbarLogin open={true} message={`welcome ${res.data.email}`} />
-
-        return res;
-    } catch (err) {
+    }).catch((err) => {
+        <Snackbar open={true} autoHideDuration={6000}>
+            <Alert severity="success" sx={{ width: '100%' }}>
+                {`${err}`}
+            </Alert>
+        </Snackbar>
         dispatch({ type: "LOGIN_FAILURE", payload: err });
-        <SnackbarLogin open={true} message={`${err}`} />
 
-    }
+    })
 };
 
-export const SnackbarLogin = ({ open, message }) => {
-    <Snackbar open={open} autoHideDuration={6000}>
-        <Alert severity="success" sx={{ width: '100%' }}>
-            {`${message}`}
-        </Alert>
-    </Snackbar>
-}
