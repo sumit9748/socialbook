@@ -11,9 +11,7 @@ export default function Login() {
     const password = useRef();
 
     const { error, isFetching, dispatch } = useContext(AuthContext);
-
-
-    console.log(error)
+    const [open, setOpen] = useState(error);
 
     const handleClick = (e) => {
         e.preventDefault();
@@ -32,6 +30,11 @@ export default function Login() {
                         <input placeholder="password" type="password" minLength="6" required className="loginInput" ref={password} />
                         <button className="loginButton" disabled={isFetching}>{isFetching ? <CircularProgress color="inherit" size="20px" /> : "Log In"}</button>
                         <span className="loginForgot">Forgot Password</span>
+                        <Snackbar open={open} autoHideDuration={6000} >
+                            <Alert severity="error" sx={{ width: '100%' }}>
+                                User Credentials do not match
+                            </Alert>
+                        </Snackbar>
                         <button className="loginRegisterButton" disabled={isFetching}>{isFetching ? <CircularProgress color="inherit" size="20px" /> : "create a new account"}</button>
                     </form>
                 </div>
