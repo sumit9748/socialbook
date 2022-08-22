@@ -13,11 +13,12 @@ export default function Login() {
     const password = useRef();
 
     const { error, isFetching, dispatch } = useContext(AuthContext);
-    const [open] = React.useState(error);
+    const [open, setOpen] = React.useState(false);
 
     const handleClick = (e) => {
         e.preventDefault();
         loginCall({ email: email.current.value, password: password.current.value }, dispatch)
+        setOpen(error);
     };
     return (
         <div className="login">
