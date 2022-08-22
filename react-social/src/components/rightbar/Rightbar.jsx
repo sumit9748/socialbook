@@ -51,7 +51,7 @@ export default function Rightbar({ user, socket }) {
         });
         dispatch({ type: "UNFOLLOW", payload: user._id });
       } else {
-        socket?.current.emit("friendRequest", currentUser.username, user._id)
+        socket?.current.emit("friendRequest", { senderName: currentUser.username, receiverId: user._id })
         await axiosInstance.put(`/users/follow/${user._id}`, {
           userId: currentUser._id,
         });
