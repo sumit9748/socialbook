@@ -15,7 +15,7 @@ export default function Topbar({ text, setText, socket }) {
 
   const { user } = useContext(AuthContext);
   const [notifications, setNotifications] = useState([]);
-  const [frndReq, setFrndReq] = useState([]);
+  const [frndReq, setFrndReq] = useState({});
   const [open, setOpen] = useState({
     notification: false,
     frndRequest: false,
@@ -27,8 +27,8 @@ export default function Topbar({ text, setText, socket }) {
     socket?.current?.on("getNotification", (data) => {
       setNotifications((prev) => [...prev, data]);
     });
-    socket?.current?.on("getFriendrequest", data => {
-      setFrndReq(prev => [...prev, data]);
+    socket?.current?.on("getFriendrequest", (data) => {
+      setFrndReq((prev) => [...prev, data]);
     })
   }, [socket]);
 
@@ -51,10 +51,10 @@ export default function Topbar({ text, setText, socket }) {
   const handleRead = ({ helper }) => {
     if (helper === "not") {
       setNotifications([]);
-      setOpen.notification(false);
+      setOpen({ notification: false });
     } else {
       setFrndReq([]);
-      setOpen.frndRequest(false);
+      setOpen({ frndRequest: false });
     }
 
   };
@@ -91,7 +91,7 @@ export default function Topbar({ text, setText, socket }) {
         </div>
         <div className="topbarIcons">
           <Link to="/searchUser"><div className="topbarIconItem">
-            <Person onClick={() => setOpen.frndRequest(true)} />
+            <Person onClick={() => setOpen({ frndRequest: true })} />
             {frndReq.length > 0 && (<span className="topbarIconBadge">{frndReq.length}</span>)}
             {open.frndRequest && (
               <div className="notifications">
@@ -116,7 +116,7 @@ export default function Topbar({ text, setText, socket }) {
         </div>
         <div className="topbarIcons">
           <div className="topbarIconItem">
-            <Notification onClick={() => setOpen.notification(!open.notification)} />
+            <Notification onClick={() => setOpen({ notification: true })} />
             {notifications.length > 0 && (<span className="topbarIconBadge">{notifications.length}</span>)}
             {open.notification && (
               <div className="notifications">
