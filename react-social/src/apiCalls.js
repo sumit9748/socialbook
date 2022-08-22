@@ -1,7 +1,7 @@
 import { axiosInstance } from "./config";
 
 
-export default loginCall = async (userCredential, dispatch) => {
+export const loginCall = async (userCredential, dispatch) => {
 
     dispatch({ type: "LOGIN_START" });
     try {
