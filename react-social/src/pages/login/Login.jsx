@@ -33,11 +33,12 @@ export default function Login() {
                         <input placeholder="password" type="password" minLength="6" required className="loginInput" ref={password} />
                         <button className="loginButton" disabled={isFetching}>{isFetching ? <CircularProgress color="inherit" size="20px" /> : "Log In"}</button>
                         <span className="loginForgot">Forgot Password</span>
-                        <Snackbar
+                        {error && (<Snackbar
                             open={open}
                             autoHideDuration={6000}
+                            sx={{ backgroundColor: "red", color: "white" }}
                             message="User Credentials is not matching.."
-                        />
+                        />)}
                         <button className="loginRegisterButton" disabled={isFetching}>{isFetching ? <CircularProgress color="inherit" size="20px" /> : "create a new account"}</button>
                     </form>
                 </div>
