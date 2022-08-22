@@ -23,14 +23,7 @@ export default function Login() {
 
     const action = (
         <React.Fragment>
-            <IconButton
-                size="small"
-                aria-label="close"
-                color="inherit"
-                onClick={() => setOpen(false)}
-            >
-                <CloseIcon fontSize="small" />
-            </IconButton>
+            <CloseIcon fontSize="small" />
         </React.Fragment>
     );
 
