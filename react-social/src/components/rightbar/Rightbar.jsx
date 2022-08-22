@@ -45,11 +45,13 @@ export default function Rightbar({ user, socket }) {
   const handleClick = async () => {
     try {
       if (followed) {
+
         await axiosInstance.put(`/users/unfollow/${user._id}`, {
           userId: currentUser._id,
         });
         dispatch({ type: "UNFOLLOW", payload: user._id });
       } else {
+        socket?.current.emit("friendRequest", currentUser.username, user._id)
         await axiosInstance.put(`/users/follow/${user._id}`, {
           userId: currentUser._id,
         });

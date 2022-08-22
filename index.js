@@ -122,6 +122,12 @@ io.on("connection", (socket) => {
 
   })
 
+  socket.on("friendRequest", ({ senderName, receiverId }) => {
+    const receiver = getUser(receiverId);
+    io.to(receiver.socketId).emit("getFriendrequest", { senderName });
+
+  })
+
   //when disconnect
   socket.on("disconnect", () => {
     // localStorage.setItem("onlineUsers", JSON.stringify(users));
