@@ -4,7 +4,7 @@ import { Alert } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import Stack from '@mui/material/Stack';
 
-export const loginCall = (userCredential, dispatch) => {
+export default loginCall = (userCredential, dispatch) => {
     const [open, setOpen] = useState(false);
     useEffect(() => {
         dispatch({ type: "LOGIN_START" });
