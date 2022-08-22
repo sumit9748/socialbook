@@ -21,6 +21,19 @@ export default function Login() {
         setOpen(true);
     };
 
+    const action = (
+        <React.Fragment>
+            <IconButton
+                size="small"
+                aria-label="close"
+                color="inherit"
+                onClick={() => setOpen(false)}
+            >
+                <CloseIcon fontSize="small" />
+            </IconButton>
+        </React.Fragment>
+    );
+
     return (
         <div className="login">
             <div className="loginWrapper">
@@ -41,9 +54,10 @@ export default function Login() {
 
                                 sx={{ backgroundColor: "red", color: "white" }}
                                 message="User Credentials is not matching.."
+                                action={action}
 
                             />
-                                <CloseIcon onClick={() => setOpen(false)} />
+
                             </>)}
                         <button className="loginRegisterButton" disabled={isFetching}>{isFetching ? <CircularProgress color="inherit" size="20px" /> : "create a new account"}</button>
                     </form>
