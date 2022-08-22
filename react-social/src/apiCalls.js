@@ -27,7 +27,7 @@ export const loginCall = (userCredential, dispatch) => {
         <Stack spacing={2} sx={{ width: '100%' }}>
             <Snackbar open={open} autoHideDuration={6000}>
                 <Alert severity="error" sx={{ width: '100%' }}>
-                    {`${err}`}
+                    {`User credentials do not match`}
                 </Alert>
             </Snackbar>
         </Stack>
