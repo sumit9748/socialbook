@@ -1,8 +1,10 @@
 import "./login.css"
+import * as React from 'react';
 import { useRef, useContext } from "react";
 import { loginCall } from "../../apiCalls";
 import { AuthContext } from "../../context/AuthContext";
 import CircularProgress from '@mui/material/CircularProgress';
+import Snackbar from '@mui/material/Snackbar';
 
 
 export default function Login() {
@@ -11,7 +13,7 @@ export default function Login() {
     const password = useRef();
 
     const { error, isFetching, dispatch } = useContext(AuthContext);
-    const [open, setOpen] = useState(error);
+    const [open] = React.useState(error);
 
     const handleClick = (e) => {
         e.preventDefault();
@@ -30,11 +32,11 @@ export default function Login() {
                         <input placeholder="password" type="password" minLength="6" required className="loginInput" ref={password} />
                         <button className="loginButton" disabled={isFetching}>{isFetching ? <CircularProgress color="inherit" size="20px" /> : "Log In"}</button>
                         <span className="loginForgot">Forgot Password</span>
-                        <Snackbar open={open} autoHideDuration={6000} >
-                            <Alert severity="error" sx={{ width: '100%' }}>
-                                User Credentials do not match
-                            </Alert>
-                        </Snackbar>
+                        <Snackbar
+                            open={open}
+                            autoHideDuration={6000}
+                            message="User Credentials is not matching.."
+                        />
                         <button className="loginRegisterButton" disabled={isFetching}>{isFetching ? <CircularProgress color="inherit" size="20px" /> : "create a new account"}</button>
                     </form>
                 </div>
