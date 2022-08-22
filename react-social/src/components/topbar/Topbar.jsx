@@ -33,6 +33,8 @@ export default function Topbar({ text, setText, socket }) {
   }, [socket]);
 
 
+  console.log(frndReq)
+
   const displayNotification = ({ senderName, type, message }) => {
     let action;
 
