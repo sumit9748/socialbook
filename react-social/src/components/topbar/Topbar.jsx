@@ -99,7 +99,7 @@ export default function Topbar({ text, setText, socket }) {
                 {frndReq.map((n) => (
                   <p>{`${n} sent you friend request`}</p>
                 ))}
-                <button className="nButton" onClick={handleRead("frnd")}>
+                <button className="nButton" onClick={() => handleRead("frnd")}>
                   Mark as read
                 </button>
               </div>
@@ -122,7 +122,7 @@ export default function Topbar({ text, setText, socket }) {
             {opennot && (
               <div className="notifications">
                 {notifications.map((n) => displayNotification(n))}
-                <button className="nButton" onClick={handleRead("not")}>
+                <button className="nButton" onClick={() => handleRead("not")}>
                   Mark as read
                 </button>
               </div>
