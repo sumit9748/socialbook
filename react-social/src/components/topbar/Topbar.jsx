@@ -16,10 +16,9 @@ export default function Topbar({ text, setText, socket }) {
   const { user } = useContext(AuthContext);
   const [notifications, setNotifications] = useState([]);
   const [frndReq, setFrndReq] = useState({});
-  const [open, setOpen] = useState({
-    notification: false,
-    frndRequest: false,
-  });
+  const [opennot, setOpennot] = useState(false);
+  const [openfrnd, setOpenfrnd] = useState(false);
+
   const history = useHistory();
 
 
@@ -53,10 +52,10 @@ export default function Topbar({ text, setText, socket }) {
   const handleRead = ({ helper }) => {
     if (helper === "not") {
       setNotifications([]);
-      setOpen({ notification: false });
+      setOpennot(false);
     } else {
       setFrndReq([]);
-      setOpen({ frndRequest: false });
+      setOpenfrnd(false);
     }
 
   };
@@ -93,9 +92,9 @@ export default function Topbar({ text, setText, socket }) {
         </div>
         <div className="topbarIcons">
           <Link to="/searchUser"><div className="topbarIconItem">
-            <Person onClick={() => setOpen({ frndRequest: true })} />
+            <Person onClick={() => setOpenfrnd(true)} />
             {frndReq.length > 0 && (<span className="topbarIconBadge">{frndReq.length}</span>)}
-            {open.frndRequest && (
+            {openfrnd && (
               <div className="notifications">
                 {frndReq.map((n) => (
                   <p>{`${n} sent you friend request`}</p>
@@ -118,9 +117,9 @@ export default function Topbar({ text, setText, socket }) {
         </div>
         <div className="topbarIcons">
           <div className="topbarIconItem">
-            <Notification onClick={() => setOpen({ notification: true })} />
+            <Notification onClick={() => setOpennot(true)} />
             {notifications.length > 0 && (<span className="topbarIconBadge">{notifications.length}</span>)}
-            {open.notification && (
+            {opennot && (
               <div className="notifications">
                 {notifications.map((n) => displayNotification(n))}
                 <button className="nButton" onClick={handleRead("not")}>
