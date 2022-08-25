@@ -9,6 +9,7 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import React from "react";
 import { Link, useHistory } from "react-router-dom";
+import { formGroupClasses } from "@mui/material";
 
 
 export default function Topbar({ text, setText, socket }) {
@@ -26,9 +27,9 @@ export default function Topbar({ text, setText, socket }) {
     socket?.current?.on("getNotification", (data) => {
       setNotifications((prev) => [...prev, data]);
     });
-    // socket?.current?.on("getFriendrequest", (data) => {
-    //   setFrndReq((prev) => [...prev, data]);
-    // })
+    socket?.current?.on("getFriendrequest", (data) => {
+      setFrndReq((prev) => [...prev, data]);
+    })
   }, [socket]);
 
 
@@ -49,14 +50,14 @@ export default function Topbar({ text, setText, socket }) {
     );
   };
 
-  const handleRead = ({ helper }) => {
-    // if (helper == "not") {
-    setNotifications([]);
-    setOpennot(false);
-    // } else {
-    //   setFrndReq([]);
-    //   setOpenfrnd(false);
-    // }
+  const handleRead = ({ temp }) => {
+    if (temp == false) {
+      setNotifications([]);
+      setOpennot(false);
+    } else {
+      setFrndReq([]);
+      setOpenfrnd(false);
+    }
 
   };
 
@@ -99,7 +100,7 @@ export default function Topbar({ text, setText, socket }) {
                 {frndReq.map((n) => (
                   <p>{`${n} sent you friend request`}</p>
                 ))}
-                <button className="nButton" onClick={() => handleRead("frnd")}>
+                <button className="nButton" onClick={handleRead(true)}>
                   Mark as read
                 </button>
               </div>
@@ -122,7 +123,7 @@ export default function Topbar({ text, setText, socket }) {
             {opennot && (
               <div className="notifications">
                 {notifications.map((n) => displayNotification(n))}
-                <button className="nButton" onClick={() => handleRead("not")}>
+                <button className="nButton" onClick={handleRead(false)}>
                   Mark as read
                 </button>
               </div>
