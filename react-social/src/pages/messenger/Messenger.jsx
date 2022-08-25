@@ -185,7 +185,7 @@ export default function Messenger({ socket }) {
                 ))}
               </div>
             ) : (
-              <>
+              <div className="chatBoxWrapper">
                 <div className="chatBoxTop">
                   {messages.map((m) => (
                     <div ref={scrollRef}>
@@ -204,7 +204,7 @@ export default function Messenger({ socket }) {
                     Send
                   </button>
                 </div>
-              </>
+              </div>
             )}
           </>
         )}
