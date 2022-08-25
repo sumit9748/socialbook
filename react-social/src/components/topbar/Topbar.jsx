@@ -15,7 +15,7 @@ export default function Topbar({ text, setText, socket }) {
 
   const { user } = useContext(AuthContext);
   const [notifications, setNotifications] = useState([]);
-  const [frndReq, setFrndReq] = useState({});
+  const [frndReq, setFrndReq] = useState([]);
   const [opennot, setOpennot] = useState(false);
   const [openfrnd, setOpenfrnd] = useState(false);
 
@@ -50,7 +50,7 @@ export default function Topbar({ text, setText, socket }) {
   };
 
   const handleRead = ({ helper }) => {
-    if (helper === "not") {
+    if (helper == "not") {
       setNotifications([]);
       setOpennot(false);
     } else {
