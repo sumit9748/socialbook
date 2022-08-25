@@ -17,7 +17,6 @@ export default function Topbar({ text, setText, socket }) {
   const { user } = useContext(AuthContext);
   const [notifications, setNotifications] = useState([]);
   const [opennot, setOpennot] = useState(false);
-  const [openfrnd, setOpenfrnd] = useState(false);
 
   const history = useHistory();
 
