@@ -7,7 +7,6 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { axiosInstance } from "../../config";
 import useWidth from "../../config";
-import Mobilemessenger from "./Mobilemessenger";
 
 export default function Messenger({ socket }) {
   const [conversations, setConversations] = useState([]);
