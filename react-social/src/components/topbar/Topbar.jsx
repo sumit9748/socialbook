@@ -26,9 +26,9 @@ export default function Topbar({ text, setText, socket }) {
     socket?.current?.on("getNotification", (data) => {
       setNotifications((prev) => [...prev, data]);
     });
-    socket?.current?.on("getFriendrequest", (data) => {
-      setFrndReq((prev) => [...prev, data]);
-    })
+    // socket?.current?.on("getFriendrequest", (data) => {
+    //   setFrndReq((prev) => [...prev, data]);
+    // })
   }, [socket]);
 
 
@@ -50,13 +50,13 @@ export default function Topbar({ text, setText, socket }) {
   };
 
   const handleRead = ({ helper }) => {
-    if (helper == "not") {
-      setNotifications([]);
-      setOpennot(false);
-    } else {
-      setFrndReq([]);
-      setOpenfrnd(false);
-    }
+    // if (helper == "not") {
+    setNotifications([]);
+    setOpennot(false);
+    // } else {
+    //   setFrndReq([]);
+    //   setOpenfrnd(false);
+    // }
 
   };
 
@@ -95,7 +95,7 @@ export default function Topbar({ text, setText, socket }) {
             <Person onClick={() => setOpenfrnd(true)} />
             {frndReq.length > 0 && (<span className="topbarIconBadge">{frndReq.length}</span>)}
             {openfrnd && (
-              <div className="notifications">
+              <div className="frndreq">
                 {frndReq.map((n) => (
                   <p>{`${n} sent you friend request`}</p>
                 ))}
