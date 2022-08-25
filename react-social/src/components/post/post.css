@@ -93,8 +93,8 @@ margin:30px 0;
 }
 @media only screen and (max-width: 768px) {
     .postImg{
-        width: auto;
-        height: auto;
-        object-fit: cover;
+        width: 80%;
+        height: 80%;
+        object-fit: contain;
     }
   }
