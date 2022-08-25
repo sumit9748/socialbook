@@ -16,7 +16,6 @@ export default function Topbar({ text, setText, socket }) {
 
   const { user } = useContext(AuthContext);
   const [notifications, setNotifications] = useState([]);
-  const [frndReq, setFrndReq] = useState([]);
   const [opennot, setOpennot] = useState(false);
   const [openfrnd, setOpenfrnd] = useState(false);
 
@@ -27,13 +26,9 @@ export default function Topbar({ text, setText, socket }) {
     socket?.current?.on("getNotification", (data) => {
       setNotifications((prev) => [...prev, data]);
     });
-    socket?.current?.on("getFriendrequest", (data) => {
-      setFrndReq((prev) => [...prev, data]);
-    })
   }, [socket]);
 
 
-  console.log(frndReq)
 
   const displayNotification = ({ senderName, type, message }) => {
     let action;
@@ -50,14 +45,13 @@ export default function Topbar({ text, setText, socket }) {
     );
   };
 
-  const handleRead = ({ temp }) => {
-    if (temp == false) {
-      setNotifications([]);
-      setOpennot(false);
-    } else {
-      setFrndReq([]);
-      setOpenfrnd(false);
-    }
+  const handleRead = () => {
+    setNotifications([]);
+    setOpennot(false);
+    // } else {
+    //   setFrndReq([]);
+    //   setOpenfrnd(false);
+    // }
 
   };
 
@@ -93,18 +87,7 @@ export default function Topbar({ text, setText, socket }) {
         </div>
         <div className="topbarIcons">
           <div className="topbarIconItem">
-            <Person onClick={() => setOpenfrnd(true)} />
-            {frndReq.length > 0 && (<span className="topbarIconBadge">{frndReq.length}</span>)}
-            {openfrnd && (
-              <div className="frndreq">
-                {frndReq.map((n) => (
-                  <p>{`${n} sent you friend request`}</p>
-                ))}
-                <button className="nButton" onClick={handleRead(true)}>
-                  Mark as read
-                </button>
-              </div>
-            )}
+            <Link to="/searchUser"><Person /></Link>
           </div>
         </div>
         <div className="topbarIcons">
@@ -122,7 +105,7 @@ export default function Topbar({ text, setText, socket }) {
             {opennot && (
               <div className="notifications">
                 {notifications.map((n) => displayNotification(n))}
-                <button className="nButton" onClick={handleRead(false)}>
+                <button className="nButton" onClick={handleRead()}>
                   Mark as read
                 </button>
               </div>
