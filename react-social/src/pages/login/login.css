@@ -75,3 +75,9 @@
     cursor: pointer;
     align-self: center;
 }
+@media only screen and (max-width: 768px) {
+    .loginWrapper{
+        display:flex;
+        flex-direction: column;
+    }
+  }

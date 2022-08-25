@@ -9,7 +9,6 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import React from "react";
 import { Link, useHistory } from "react-router-dom";
-import { formGroupClasses } from "@mui/material";
 
 
 export default function Topbar({ text, setText, socket }) {

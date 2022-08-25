@@ -124,4 +124,11 @@ text-decoration: "none";
     padding: 5px;
     margin-top: 10px;
   }
-  
+  @media only screen and (max-width: 768px) {
+    .topbarRight{
+    display: none;
+    }
+    .topbarCenter{
+        display: none;
+    }
+  }
