@@ -116,20 +116,20 @@ export default function Messenger({ socket }) {
     <>
       <Topbar />
       <div className="messenger">
-        {!chatbox && (
+        {!chatbox && width < 768(
 
           <div className="chatMenu">
             <div className="chatMenuWrapper">
               <input placeholder="Search for friends" className="chatMenuInput" />
               {conversations.map((c) => (
-                <div onClick={() => handleChat(c)}>
+                <div onClick={handleChat(c)}>
                   <Conversation conversation={c} currentUser={user} />
                 </div>
               ))}
             </div>
           </div>
         )}
-        {chatbox && (
+        {chatbox && width < 768(
 
           <div className="chatBox">
             <div className="chatBoxWrapper">
