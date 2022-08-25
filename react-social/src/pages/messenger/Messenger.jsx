@@ -6,7 +6,7 @@ import ChatOnline from "../../components/chatOnline/ChatOnline";
 import { useContext, useEffect, useRef, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { axiosInstance } from "../../config";
-import { useWindowSize } from 'usehooks-ts'
+import useWidth from "../../config";
 
 export default function Messenger({ socket }) {
   const [conversations, setConversations] = useState([]);
@@ -16,8 +16,7 @@ export default function Messenger({ socket }) {
   const [arrivalMessage, setArrivalMessage] = useState(null);
   const [onlineUsers, setOnlineUsers] = useState([]);
   const { user } = useContext(AuthContext);
-  const { width, height } = useWindowSize();
-  const [chatbox, setChatbox] = useState(false);
+  const width = useWidth();
   const scrollRef = useRef();
 
 
