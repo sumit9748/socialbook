@@ -64,3 +64,11 @@
     text-align: center;
     cursor: default;
 }
+@media only screen and (max-width: 768px) {
+    .chatBoxWrapper{
+        width: 100%;
+    }
+    .chatBoxTop{
+        height: auto;
+    }
+  }
