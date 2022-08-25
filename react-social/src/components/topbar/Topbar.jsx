@@ -92,7 +92,7 @@ export default function Topbar({ text, setText, socket }) {
           </Link>
         </div>
         <div className="topbarIcons">
-          <Link to="/searchUser"><div className="topbarIconItem">
+          <div className="topbarIconItem">
             <Person onClick={() => setOpenfrnd(true)} />
             {frndReq.length > 0 && (<span className="topbarIconBadge">{frndReq.length}</span>)}
             {openfrnd && (
@@ -106,7 +106,6 @@ export default function Topbar({ text, setText, socket }) {
               </div>
             )}
           </div>
-          </Link>
         </div>
         <div className="topbarIcons">
           <div className="topbarIconItem">
