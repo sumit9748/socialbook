@@ -32,7 +32,6 @@ export default function Rightbar({ user, socket }) {
   }, [user]);
 
   useEffect(() => {
-    socket?.current?.emit("addUser", currentUser._id);
     socket?.current?.on("getUsers", (users) => {
       setOnlineUsers(
         currentUser.followings.filter((f) => users.some((u) => u.userId === f))
@@ -51,10 +50,13 @@ export default function Rightbar({ user, socket }) {
         });
         dispatch({ type: "UNFOLLOW", payload: user._id });
       } else {
-        socket?.current.emit("friendRequest", { senderName: currentUser.username, receiverId: user._id })
         await axiosInstance.put(`/users/follow/${user._id}`, {
           userId: currentUser._id,
         });
+        socket?.current?.emit("friendRequest", {
+          senderName: currentUser.username,
+          receiverId: user._id,
+        })
         dispatch({ type: "FOLLOW", payload: user._id });
       }
       setFollowed(!followed);
