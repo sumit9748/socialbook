@@ -94,7 +94,7 @@ export default function Topbar({ text, setText, socket }) {
         </div>
         <div className="topbarIcons">
           <div className="topbarIconItem">
-            <Notification onClick={() => setOpennot(!opennot)} />
+            <Notification onClick={() => setOpennot(true)} />
             {notifications.length > 0 && (<span className="topbarIconBadge">{notifications.length}</span>)}
             {opennot && (
               <div className="notifications">
