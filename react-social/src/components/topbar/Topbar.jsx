@@ -36,7 +36,7 @@ export default function Topbar({ text, setText, socket }) {
     } else if (type == 2) {
       action = "loved";
     } else {
-      action = `${message}`;
+      action = `commented "${message}"`;
     }
     return (
       <span className="notification">{`${senderName} ${action} your post.`}</span>
@@ -46,10 +46,6 @@ export default function Topbar({ text, setText, socket }) {
   const handleRead = () => {
     setNotifications([]);
     setOpennot(false);
-    // } else {
-    //   setFrndReq([]);
-    //   setOpenfrnd(false);
-    // }
 
   };
 
@@ -98,7 +94,7 @@ export default function Topbar({ text, setText, socket }) {
         </div>
         <div className="topbarIcons">
           <div className="topbarIconItem">
-            <Notification onClick={() => setOpennot(true)} />
+            <Notification onClick={() => setOpennot(!opennot)} />
             {notifications.length > 0 && (<span className="topbarIconBadge">{notifications.length}</span>)}
             {opennot && (
               <div className="notifications">

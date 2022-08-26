@@ -121,12 +121,13 @@ io.on("connection", (socket) => {
     }
 
   })
-
-  // socket.on("friendRequest", ({ senderName, receiverId }) => {
-  //   const receiver = getUser(receiverId);
-  //   io.to(receiver.socketId).emit("getFriendrequest", { senderName });
-
-  // })
+  socket.on("sendText", ({ senderName, receiverName, text }) => {
+    const receiver = getUser(receiverName);
+    io.to(receiver.socketId).emit("getText", {
+      senderName,
+      text,
+    });
+  });
 
   //when disconnect
   socket.on("disconnect", () => {
