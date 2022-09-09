@@ -9,8 +9,8 @@ import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
 import { storage } from "../../pages/Firebase";
 //import { useFormControl } from "../../../../../expense-manager/client/node_modules/@mui/material";
 
-export const UpdateUser = ({ userc, listItem }) => {
-  // console.log(userc.username);
+export const UpdateUser = ({ }) => {
+  // console.log(user.username);user
   const { user } = useContext(AuthContext);
   const username = useRef();
   const city = useRef();
@@ -23,9 +23,9 @@ export const UpdateUser = ({ userc, listItem }) => {
 
   let relationship;
 
-  if (userc.relationship === 1) {
+  if (user.relationship === 1) {
     relationship = "single";
-  } else if (userc.relationship === 2) {
+  } else if (user.relationship === 2) {
     relationship = "married";
   } else {
     relationship = "others";
@@ -41,13 +41,13 @@ export const UpdateUser = ({ userc, listItem }) => {
     let updatedUser = {
       username: username.current.value
         ? username.current.value
-        : userc.username,
-      city: city.current.value ? city.current.value : userc.city,
-      desc: desc.current.value ? desc.current.value : userc.desc,
+        : user.username,
+      city: city.current.value ? city.current.value : user.city,
+      desc: desc.current.value ? desc.current.value : user.desc,
       relation: relation.current.value
         ? relation.current.value
-        : userc.relationship,
-      userId: userc._id,
+        : user.relationship,
+      userId: user._id,
     };
     if (file) {
       const data = new FormData();
@@ -65,7 +65,7 @@ export const UpdateUser = ({ userc, listItem }) => {
           .then((url) => {
             updatedUser.profilePicture = String(url);
             axiosInstance.put("/users/" + user._id, updatedUser).then(() => {
-              axiosInstance.get(`/users?userId=${userc._id}`).then((res) => {
+              axiosInstance.get(`/users?userId=${user._id}`).then((res) => {
                 dispatch({ type: "UPDATE_USER", payload: res.data });
               })
             })
@@ -85,24 +85,24 @@ export const UpdateUser = ({ userc, listItem }) => {
             <h1 className="userDetailsText">User Details</h1>
             <div className="updateUserItem">
               <label className="updateUserKey">Username:-</label>
-              <span className="updateUserValue">{userc.username}</span>
+              <span className="updateUserValue">{user.username}</span>
             </div>
             <div className="updateUserItem">
               <label className="updateUserKey">From:-</label>
-              <span className="updateUserValue">{userc.city}</span>
+              <span className="updateUserValue">{user.city}</span>
             </div>
             <div className="updateUserItem">
               <label className="updateUserKey">Desc:-</label>
-              <span className="updateUserValue">{userc.desc}</span>
+              <span className="updateUserValue">{user.desc}</span>
             </div>
             <div className="updateUserItem">
               <label className="updateUserKey">RelationShip Stats:-</label>
-              <span className="updateUserValue">{userc.relationship}</span>
+              <span className="updateUserValue">{user.relationship}</span>
             </div>
           </div>
           <div className="updateUserTopRight">
             <img
-              src={userc.profilePicture ? userc.profilePicture :
+              src={user.profilePicture ? user.profilePicture :
                 "https://i.pinimg.com/736x/d9/56/9b/d9569bbed4393e2ceb1af7ba64fdf86a.jpg"}
               alt=""
               className="imgContainer"
