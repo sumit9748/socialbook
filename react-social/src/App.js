@@ -14,8 +14,6 @@ import Messenger from "./pages/messenger/Messenger";
 import { UpdateProfile } from "./pages/updateProfile/UpdateProfile";
 import TagUser from "./components/tagUser/TagUser";
 import { io } from "socket.io-client";
-import { storage } from "./pages/Firebase"
-import { ref, listAll, getDownloadURL } from 'firebase/storage'
 
 
 function App() {

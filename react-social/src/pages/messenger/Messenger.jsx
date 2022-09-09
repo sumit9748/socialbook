@@ -46,7 +46,6 @@ export default function Messenger({ socket }) {
     });
   }, [user]);
 
-  console.log(onlineUsers)
 
   useEffect(() => {
     const getConversations = async () => {
@@ -106,10 +105,6 @@ export default function Messenger({ socket }) {
   useEffect(() => {
     scrollRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
-
-  const getChatlist = () => {
-
-  }
 
 
   return (
