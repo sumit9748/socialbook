@@ -36,7 +36,7 @@ export default function Topbar({ text, setText, socket }) {
     } else if (type == 2) {
       action = "loved";
     } else {
-      action = `commented "${message}"`;
+      action = `commented "${message} on"`;
     }
     return (
       <span className="notification">{`${senderName} ${action} your post.`}</span>

@@ -74,7 +74,7 @@ export const UpdateUser = ({ }) => {
 
     }
 
-    // window.location.reload();
+    window.location.reload();
   };
 
   return (
