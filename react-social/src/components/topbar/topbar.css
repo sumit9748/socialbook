@@ -28,7 +28,7 @@
 }
 .searchInput{
     border:none;
-    width:70%;
+    width:100%;
 }
 .searchInput:focus{
     outline:none;
