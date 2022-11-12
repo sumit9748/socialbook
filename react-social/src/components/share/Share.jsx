@@ -1,8 +1,8 @@
 import "./share.css";
-import PermMedia from '@mui/icons-material/PermMedia';
-import Label from '@mui/icons-material/Label';
-import Room from '@mui/icons-material/Room'
-import EmojiEmotions from '@mui/icons-material/EmojiEmotions'
+import PermMedia from "@mui/icons-material/PermMedia";
+import Label from "@mui/icons-material/Label";
+import Room from "@mui/icons-material/Room";
+import EmojiEmotions from "@mui/icons-material/EmojiEmotions";
 
 import { useContext, useRef, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
@@ -33,23 +33,20 @@ export default function Share() {
       const imgRef = ref(storage, `images/${file.name + Date.now()}`);
 
       uploadBytes(imgRef, file).then(() => {
-        getDownloadURL(imgRef)
-          .then((url) => {
-            console.log(url)
-            newPost.img = String(url);
-            axiosInstance.post("/posts", newPost).then(() => {
-              window.location.reload();
-            })
-          })
+        getDownloadURL(imgRef).then((url) => {
+          newPost.img = String(url);
+          axiosInstance.post("/posts", newPost).then(() => {
+            window.location.reload();
+          });
+        });
         // console.log(newPost);
-      })
+      });
     } else {
       axiosInstance.post("/posts", newPost).then(() => {
         window.location.reload();
-      })
-
-    };
-  }
+      });
+    }
+  };
 
   return (
     <div className="share">
@@ -71,9 +68,7 @@ export default function Share() {
           />
         </div>
         <hr className="shareHr" />
-        {file && (
-          <ChildModal file={file} setFile={setFile} />
-        )}
+        {file && <ChildModal file={file} setFile={setFile} />}
         <form className="shareBottom" onSubmit={submitHandler}>
           <div className="shareOptions">
             <label htmlFor="file" className="shareOption">

@@ -5,7 +5,6 @@ import { loginCall } from "../../apiCalls";
 import { AuthContext } from "../../context/AuthContext";
 import CircularProgress from "@mui/material/CircularProgress";
 import Snackbar from "@mui/material/Snackbar";
-import CloseIcon from "@mui/icons-material/Close";
 
 export default function Login() {
   const email = useRef();
@@ -22,12 +21,6 @@ export default function Login() {
     );
     setOpen(true);
   };
-
-  const action = (
-    <React.Fragment>
-      <CloseIcon fontSize="small" onclick={(error = false)} />
-    </React.Fragment>
-  );
 
   return (
     <div className="login">
@@ -63,22 +56,14 @@ export default function Login() {
               )}
             </button>
             <span className="loginForgot">Forgot Password</span>
-            {error ? (
-              <Snackbar
-                open={open}
-                autoHideDuration={3000}
-                sx={{ backgroundColor: "red", color: "white" }}
-                message="User Credentials is not matching.."
-                action={action}
-              />
-            ) : (
-              <Snackbar
-                open={open}
-                autoHideDuration={3000}
-                sx={{ backgroundColor: "green", color: "white" }}
-                message="successfully loggedin."
-                action={action}
-              />
+            {open && (
+              <>
+                {error ? (
+                  <p style={{ color: "red" }}>something went wrong.</p>
+                ) : (
+                  <p style={{ color: "green" }}>Successfully logged in..</p>
+                )}
+              </>
             )}
             <button className="loginRegisterButton" disabled={isFetching}>
               {isFetching ? (

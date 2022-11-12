@@ -5,11 +5,11 @@ import { useContext, useState } from "react";
 import { useRef } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { axiosInstance } from "../../config";
-import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { storage } from "../../pages/Firebase";
 //import { useFormControl } from "../../../../../expense-manager/client/node_modules/@mui/material";
 
-export const UpdateUser = ({ }) => {
+export const UpdateUser = ({}) => {
   // console.log(user.username);user
   const { user } = useContext(AuthContext);
   const username = useRef();
@@ -19,7 +19,7 @@ export const UpdateUser = ({ }) => {
   const relation = useRef();
   const { dispatch } = useContext(AuthContext);
 
-  const [imageAsFile, setImageAsFile] = useState('')
+  const [imageAsFile, setImageAsFile] = useState("");
 
   let relationship;
 
@@ -33,15 +33,12 @@ export const UpdateUser = ({ }) => {
 
   const [file, setFile] = useState(null);
 
-  console.log(imageAsFile)
-
+  console.log(imageAsFile);
 
   const submitHandler = async (e) => {
     e.preventDefault();
     let updatedUser = {
-      username: username.current.value
-        ? username.current.value
-        : user.username,
+      username: username.current.value ? username.current.value : user.username,
       city: city.current.value ? city.current.value : user.city,
       desc: desc.current.value ? desc.current.value : user.desc,
       relation: relation.current.value
@@ -56,22 +53,26 @@ export const UpdateUser = ({ }) => {
       data.append("file", file);
 
       const image = file;
-      console.log(file)
-      setImageAsFile(imageAsFile => (image))
+      console.log(file);
+      setImageAsFile((imageAsFile) => image);
       const imgRef = ref(storage, `images/${file.name + Date.now()}`);
 
       uploadBytes(imgRef, file).then(() => {
-        getDownloadURL(imgRef)
-          .then((url) => {
-            updatedUser.profilePicture = String(url);
-            axiosInstance.put("/users/" + user._id, updatedUser).then(() => {
-              axiosInstance.get(`/users?userId=${user._id}`).then((res) => {
-                dispatch({ type: "UPDATE_USER", payload: res.data });
-              })
-            })
-          })
-      })
-
+        getDownloadURL(imgRef).then((url) => {
+          updatedUser.profilePicture = String(url);
+          axiosInstance.put("/users/" + user._id, updatedUser).then(() => {
+            axiosInstance.get(`/users?userId=${user._id}`).then((res) => {
+              dispatch({ type: "UPDATE_USER", payload: res.data });
+            });
+          });
+        });
+      });
+    } else {
+      axiosInstance.put("/users/" + user._id, updatedUser).then(() => {
+        axiosInstance.get(`/users?userId=${user._id}`).then((res) => {
+          dispatch({ type: "UPDATE_USER", payload: res.data });
+        });
+      });
     }
 
     // window.location.reload();
@@ -102,8 +103,11 @@ export const UpdateUser = ({ }) => {
           </div>
           <div className="updateUserTopRight">
             <img
-              src={user.profilePicture ? user.profilePicture :
-                "https://i.pinimg.com/736x/d9/56/9b/d9569bbed4393e2ceb1af7ba64fdf86a.jpg"}
+              src={
+                user.profilePicture
+                  ? user.profilePicture
+                  : "https://i.pinimg.com/736x/d9/56/9b/d9569bbed4393e2ceb1af7ba64fdf86a.jpg"
+              }
               alt=""
               className="imgContainer"
             />

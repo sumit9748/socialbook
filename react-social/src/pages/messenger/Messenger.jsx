@@ -19,7 +19,6 @@ export default function Messenger({ socket }) {
   const width = useWidth();
   const scrollRef = useRef();
 
-
   useEffect(() => {
     socket?.current.on("getMessage", (data) => {
       setArrivalMessage({
@@ -45,7 +44,6 @@ export default function Messenger({ socket }) {
       );
     });
   }, [user]);
-
 
   useEffect(() => {
     const getConversations = async () => {
@@ -100,12 +98,9 @@ export default function Messenger({ socket }) {
     }
   };
 
-
-
   useEffect(() => {
     scrollRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
-
 
   return (
     <>
@@ -115,7 +110,10 @@ export default function Messenger({ socket }) {
           <>
             <div className="chatMenu">
               <div className="chatMenuWrapper">
-                <input placeholder="Search for friends" className="chatMenuInput" />
+                <input
+                  placeholder="Search for friends"
+                  className="chatMenuInput"
+                />
                 {conversations.map((c) => (
                   <div onClick={() => setCurrentChat(c)}>
                     <Conversation conversation={c} currentUser={user} />
@@ -125,14 +123,17 @@ export default function Messenger({ socket }) {
             </div>
 
             <div className="chatBox">
-
               <div className="chatBoxWrapper">
                 {currentChat ? (
                   <>
                     <div className="chatBoxTop">
                       {messages.map((m) => (
                         <div ref={scrollRef}>
-                          <Message message={m} own={m.sender === user._id} friend={m.sender !== user._id && m.sender} />
+                          <Message
+                            message={m}
+                            own={m.sender === user._id}
+                            friend={m.sender !== user._id && m.sender}
+                          />
                         </div>
                       ))}
                     </div>
@@ -143,7 +144,10 @@ export default function Messenger({ socket }) {
                         onChange={(e) => setNewMessage(e.target.value)}
                         value={newMessage}
                       ></textarea>
-                      <button className="chatSubmitButton" onClick={handleSubmit}>
+                      <button
+                        className="chatSubmitButton"
+                        onClick={handleSubmit}
+                      >
                         Send
                       </button>
                     </div>
@@ -154,7 +158,6 @@ export default function Messenger({ socket }) {
                   </span>
                 )}
               </div>
-
             </div>
 
             <div className="chatOnline">
@@ -171,7 +174,10 @@ export default function Messenger({ socket }) {
           <>
             {!currentChat ? (
               <div className="chatMenuWrapper">
-                <input placeholder="Search for friends" className="chatMenuInput" />
+                <input
+                  placeholder="Search for friends"
+                  className="chatMenuInput"
+                />
                 {conversations.map((c) => (
                   <div onClick={() => setCurrentChat(c)}>
                     <Conversation conversation={c} currentUser={user} />
@@ -183,7 +189,11 @@ export default function Messenger({ socket }) {
                 <div className="chatBoxTop">
                   {messages.map((m) => (
                     <div ref={scrollRef}>
-                      <Message message={m} own={m.sender === user._id} friend={m.sender !== user._id && m.sender} />
+                      <Message
+                        message={m}
+                        own={m.sender === user._id}
+                        friend={m.sender !== user._id && m.sender}
+                      />
                     </div>
                   ))}
                 </div>
@@ -202,7 +212,6 @@ export default function Messenger({ socket }) {
             )}
           </>
         )}
-
       </div>
     </>
   );
