@@ -194,7 +194,7 @@ export const AccordianComments = ({ post, socket, currentUser }) => {
       message: comment,
     });
     try {
-      await axiosInstance.post("/comment/", {
+      await axiosInstance.post("/comment", {
         postId: post._id,
         text: comment,
         commenter: currentUser.username,
