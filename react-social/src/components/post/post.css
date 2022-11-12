@@ -93,16 +93,11 @@
 }
 .comment {
   display: flex;
-  padding: 5px;
-  justify-content: center;
-  align-items: center;
+  width: 100%;
 }
 .commentleft {
   display: flex;
   flex-direction: column;
-}
-.commentright {
-  display: flex;
 }
 @media only screen and (max-width: 768px) {
   .postImg {
