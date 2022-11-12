@@ -186,14 +186,14 @@ export const AccordianComments = ({ post, socket, currentUser }) => {
   };
   const [comment, setComment] = useState("");
 
-  //   const sendComment = () => {
-  //     socket?.current?.emit("sendNotification", {
-  //       senderName: currentUser.username,
-  //       receiverId: post.userId,
-  //       type: 3,
-  //       message: comment,
-  //     });
-  //   };
+  const sendComment = () => {
+    socket?.current?.emit("sendNotification", {
+      senderName: currentUser.username,
+      receiverId: post.userId,
+      type: 3,
+      message: comment,
+    });
+  };
 
   return (
     <Accordion
@@ -206,7 +206,7 @@ export const AccordianComments = ({ post, socket, currentUser }) => {
         aria-controls="panel1bh-content"
         id="panel1bh-header"
       >
-        {/* <div className="comment">
+        <div className="comment">
           <div className="commentleft">
             <img
               src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZXxlbnwwfHwwfHw%3D&w=1000&q=80"
@@ -221,7 +221,7 @@ export const AccordianComments = ({ post, socket, currentUser }) => {
               perferendis accusamus voluptatum saepe?
             </p>
           </div>
-        </div> */}
+        </div>
         <Typography sx={{ width: "33%", flexShrink: 0, height: "15%" }}>
           Comments
         </Typography>
