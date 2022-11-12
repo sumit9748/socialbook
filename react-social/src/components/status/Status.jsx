@@ -1,5 +1,5 @@
 import React from "react";
-
+import "./status.css";
 const Status = () => {
   return (
     <div className="status">
