@@ -11,6 +11,7 @@ const postRoute = require("./routes/posts");
 const conversationRoute = require("./routes/conversations");
 const messageRoute = require("./routes/messages");
 const onlineRoute = require("./routes/onlines");
+const commentRoute = require("./routes/comment");
 const router = express.Router();
 const path = require("path");
 const cors = require("cors");
@@ -20,10 +21,9 @@ const http = require("http").createServer(app);
 const io = require("socket.io")(http, {
   cors: {
     origin: "*",
-    methods: ["GET", "POST", "DELETE", "PUT"]
-  }
+    methods: ["GET", "POST", "DELETE", "PUT"],
+  },
 });
-
 
 dotenv.config();
 
@@ -42,7 +42,6 @@ app.use(cors());
 app.use(express.json());
 // app.use(helmet());
 app.use(morgan("common"));
-
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -68,16 +67,15 @@ app.use("/connect/posts", postRoute);
 app.use("/connect/conversations", conversationRoute);
 app.use("/connect/messages", messageRoute);
 app.use("/connect/onlines", onlineRoute);
+app.use("/connect/comment", commentRoute);
 
 app.use(express.static(path.join(__dirname, "/react-social/build")));
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '/react-social/build', 'index.html'));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "/react-social/build", "index.html"));
 });
 
-
 let users = [];
-
 
 const addUser = (userId, socketId) => {
   !users.some((user) => user.userId === userId) &&
@@ -111,16 +109,18 @@ io.on("connection", (socket) => {
     });
   });
 
-
   socket.on("sendNotification", ({ senderName, receiverId, type, message }) => {
     const receiver = getUser(receiverId);
-    if (type !== '3') {
-      io.to(receiver.socketId).emit("getNotification", { senderName, type })
+    if (type !== "3") {
+      io.to(receiver.socketId).emit("getNotification", { senderName, type });
     } else {
-      io.to(receiver.socketId).emit("getNotification", { senderName, type, message })
+      io.to(receiver.socketId).emit("getNotification", {
+        senderName,
+        type,
+        message,
+      });
     }
-
-  })
+  });
   socket.on("sendText", ({ senderName, receiverName, text }) => {
     const receiver = getUser(receiverName);
     io.to(receiver.socketId).emit("getText", {
@@ -137,7 +137,6 @@ io.on("connection", (socket) => {
   });
 });
 
-http.listen(process.env.PORT || 8000, '0.0.0.0', function () {
-  console.log('Listening on port');
+http.listen(process.env.PORT || 8000, "0.0.0.0", function () {
+  console.log("Listening on port");
 });
-
