@@ -187,12 +187,6 @@ export const AccordianComments = ({ post, socket, currentUser }) => {
   const [comment, setComment] = useState("");
 
   const sendComment = async () => {
-    socket?.current?.emit("sendNotification", {
-      senderName: currentUser.username,
-      receiverId: post.userId,
-      type: 3,
-      message: comment,
-    });
     try {
       await axiosInstance.post("/comment", {
         postId: post._id,
