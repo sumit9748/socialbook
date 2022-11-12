@@ -243,7 +243,7 @@ export const AccordianComments = ({ post, socket, currentUser }) => {
           style={{ display: "flex", width: "90%" }}
           onChange={(e) => setComment(e.target.value)}
         />
-        <button onClick={sendComment()}>Send</button>
+        <button onClick={() => sendComment()}>Send</button>
       </AccordionDetails>
     </Accordion>
   );

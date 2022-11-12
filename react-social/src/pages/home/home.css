@@ -1,6 +1,7 @@
-.homeContainer{
-    display:flex;
-    width:100%;
-    background-color: black;
-    color:white;
+.homeContainer {
+  display: flex;
+  width: 100%;
+  background-color: black;
+  color: white;
+  overflow-x: scroll;
 }
