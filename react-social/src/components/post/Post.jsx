@@ -186,13 +186,23 @@ export const AccordianComments = ({ post, socket, currentUser }) => {
   };
   const [comment, setComment] = useState("");
 
-  const sendComment = () => {
+  const sendComment = async () => {
     socket?.current?.emit("sendNotification", {
       senderName: currentUser.username,
       receiverId: post.userId,
       type: 3,
       message: comment,
     });
+    try {
+      await axiosInstance.post("/comment", {
+        postId: post._id,
+        text: comment,
+        commenter: currentUser.username,
+        commenterPic: currentUser.profilePicture,
+      });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -206,6 +216,12 @@ export const AccordianComments = ({ post, socket, currentUser }) => {
         aria-controls="panel1bh-content"
         id="panel1bh-header"
       >
+        <Typography sx={{ width: "33%", flexShrink: 0, height: "15%" }}>
+          Comments
+        </Typography>
+        <Typography sx={{ color: "text.secondary" }}></Typography>
+      </AccordionSummary>
+      <AccordionDetails>
         <div className="comment">
           <div className="commentleft">
             <img
@@ -228,18 +244,12 @@ export const AccordianComments = ({ post, socket, currentUser }) => {
             </p>
           </div>
         </div>
-        <Typography sx={{ width: "33%", flexShrink: 0, height: "15%" }}>
-          Comments
-        </Typography>
-        <Typography sx={{ color: "text.secondary" }}></Typography>
-      </AccordionSummary>
-      <AccordionDetails>
         <input
           type="text"
           style={{ display: "flex", width: "90%" }}
           onChange={(e) => setComment(e.target.value)}
         />
-        <button>Send</button>
+        <button onClick={sendComment()}>Send</button>
       </AccordionDetails>
     </Accordion>
   );
