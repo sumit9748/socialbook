@@ -194,7 +194,7 @@ export const AccordianComments = ({ post, socket, currentUser }) => {
       message: comment,
     });
     try {
-      await axiosInstance.post("/comment", {
+      await axiosInstance.post("/comment/", {
         postId: post._id,
         text: comment,
         commenter: currentUser.username,
@@ -228,8 +228,8 @@ export const AccordianComments = ({ post, socket, currentUser }) => {
               src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZXxlbnwwfHwwfHw%3D&w=1000&q=80"
               alt=""
               style={{
-                width: "15px",
-                height: "15px",
+                width: "20px",
+                height: "20px",
                 borderRadius: "50%",
                 objectFit: "cover",
               }}
