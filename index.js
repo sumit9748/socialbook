@@ -12,6 +12,7 @@ const conversationRoute = require("./routes/conversations");
 const messageRoute = require("./routes/messages");
 const onlineRoute = require("./routes/onlines");
 const commentRoute = require("./routes/comment");
+const statusRoute = require("./routes/status");
 const router = express.Router();
 const path = require("path");
 const cors = require("cors");
@@ -68,6 +69,7 @@ app.use("/connect/conversations", conversationRoute);
 app.use("/connect/messages", messageRoute);
 app.use("/connect/onlines", onlineRoute);
 app.use("/connect/comment", commentRoute);
+app.use("/connect/status", statusRoute);
 
 app.use(express.static(path.join(__dirname, "/react-social/build")));
 
