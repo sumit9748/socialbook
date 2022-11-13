@@ -29,13 +29,11 @@ export default function Feed({ username, text, socket }) {
 
   const fetchStatus = async () => {
     const res = await axiosInstance.get("/status/allStatus");
-    const filterEDdata = res.data.filter((r) =>
-      user.followings.includes(r.userId)
-    );
+    console.log(res.data);
     setStatus(filterEDdata);
   };
 
-  console.log(status);
+  // console.log(status);
 
   function deletePost() {
     fetchPosts();
