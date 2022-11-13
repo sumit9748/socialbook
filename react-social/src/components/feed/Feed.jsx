@@ -33,7 +33,6 @@ export default function Feed({ username, text, socket }) {
     try {
       const res = await axiosInstance.get("/status/allStatus");
       console.log(res.data);
-      setStatus(filterEDdata);
     } catch (err) {
       console.log(err);
     }
