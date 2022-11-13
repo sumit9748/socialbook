@@ -17,20 +17,26 @@ export default function Feed({ username, text, socket }) {
   }, [username, user._id]);
 
   const fetchPosts = async () => {
-    const res = username
-      ? await axiosInstance.get("/posts/profile/" + username)
-      : await axiosInstance.get("/posts/timeline/" + user._id);
-    setPosts(
-      res.data.sort((p1, p2) => {
-        return new Date(p2.createdAt) - new Date(p1.createdAt);
-      })
-    );
+    try {
+      const res = username
+        ? await axiosInstance.get("/posts/profile/" + username)
+        : await axiosInstance.get("/posts/timeline/" + user._id);
+      setPosts(
+        res.data.sort((p1, p2) => {
+          return new Date(p2.createdAt) - new Date(p1.createdAt);
+        })
+      );
+    } catch (err) {}
   };
 
   const fetchStatus = async () => {
-    const res = await axiosInstance.get("/status/allStatus");
-    console.log(res.data);
-    setStatus(filterEDdata);
+    try {
+      const res = await axiosInstance.get("/status/allStatus");
+      console.log(res.data);
+      setStatus(filterEDdata);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   // console.log(status);
