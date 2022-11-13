@@ -12,11 +12,11 @@ router.post("/", async (req, res) => {
 });
 
 //get
-router.get("/allStatus", async (req, res) => {
+router.get("/all", async (req, res) => {
   try {
-    const res = await Status.find();
+    const ultimate = await Status.find();
 
-    res.status(200).json(res);
+    res.status(200).json(ultimate);
   } catch (err) {
     res.status(500).json(err);
   }

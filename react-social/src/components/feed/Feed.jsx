@@ -31,7 +31,7 @@ export default function Feed({ username, text, socket }) {
 
   const fetchStatus = async () => {
     try {
-      const res = await axiosInstance.get("/status/allStatus");
+      const res = await axiosInstance.get("/status/all");
       console.log(res.data);
     } catch (err) {
       console.log(err);
