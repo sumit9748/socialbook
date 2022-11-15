@@ -1,19 +1,18 @@
 .status {
-  display: flex;
-  width: 100%;
-
+  width: 90%;
   height: 200px;
   margin-bottom: 10px;
 }
 .statusComponent {
   width: 150px;
   height: 200px;
-  position: relative;
 
   border-radius: 20px;
   border: 2px solid red;
   margin: 0px 2px;
+  position: relative;
 }
+
 .statusProfile {
   position: absolute;
   top: 10px;
@@ -23,6 +22,7 @@
   border-radius: 50%;
   object-fit: cover;
   border: 2px solid blue;
+  z-index: 5;
 }
 .back {
   width: 100%;
@@ -33,4 +33,28 @@
   height: 100%;
   object-fit: cover;
   border-radius: 20px;
+  position: relative;
+}
+.statusRem {
+  display: flex;
+  width: 150px;
+  height: 200px;
+  border: 1px solid red;
+}
+.statusAddIcon {
+  font-size: 40px !important;
+  position: absolute;
+  top: 40%;
+  left: 40%;
+}
+.statusAdder {
+  font-size: 10px;
+  position: absolute;
+  top: 80%;
+  left: 40%;
+  background-color: #fff;
+  color: black;
+  border: none;
+  border-radius: 10px;
+  padding: 3px;
 }

@@ -10,10 +10,6 @@ const StatusSchema = new mongoose.Schema(
       type: String,
       default: "",
     },
-    statusText: {
-      type: String,
-      default: "",
-    },
     profilePic: {
       type: String,
       default: "",

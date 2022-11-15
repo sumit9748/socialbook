@@ -14,7 +14,7 @@ export default function Feed({ username, text, socket }) {
   useEffect(() => {
     fetchPosts();
     fetchStatus();
-  }, [username, user._id]);
+  }, []);
 
   const fetchPosts = async () => {
     try {
@@ -31,14 +31,13 @@ export default function Feed({ username, text, socket }) {
 
   const fetchStatus = async () => {
     try {
-      const res = await axiosInstance.get("/status/all");
-      console.log(res.data);
-    } catch (err) {
-      console.log(err);
-    }
+      const res = await axiosInstance.get(`/status/all/${user._id}`);
+      console.log(res);
+      setStatus(res.data);
+    } catch (err) {}
   };
 
-  // console.log(status);
+  console.log(status);
 
   function deletePost() {
     fetchPosts();
@@ -47,15 +46,15 @@ export default function Feed({ username, text, socket }) {
   return (
     <div className="feed">
       <div className="feedWrapper">
-        <div className="statusProvider">
-          <Status />
-          <Status />
-          <Status />
-          <Status />
-          <Status />
-          <Status />
-          <Status />
-        </div>
+        {!username && (
+          <div className="statusProvider">
+            <Status create={true} user={user} fetchStatus={fetchStatus} />
+            {status?.map((s) => (
+              <Status create={false} user={user} />
+            ))}
+          </div>
+        )}
+
         {(!username || username === user.username) && <Share />}
         {posts
           .filter((val) => {

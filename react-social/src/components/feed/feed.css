@@ -5,7 +5,8 @@
 }
 .statusProvider {
   display: flex;
-  width: 680px;
+  width: 100%;
+  gap: 5px;
 
   overflow-x: auto;
   overflow-y: hidden;

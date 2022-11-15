@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const Status = require("../models/Status");
+const User = require("../models/User");
 
 router.post("/", async (req, res) => {
   try {
@@ -12,11 +13,16 @@ router.post("/", async (req, res) => {
 });
 
 //get
-router.get("/all", async (req, res) => {
+router.get("/all/:userId", async (req, res) => {
   try {
-    const ultimate = await Status.find();
-
-    res.status(200).json(ultimate);
+    const currentUser = await User.findById(req.params.userId);
+    const userStatus = await Status.find({ userId: currentUser._id });
+    const allstatus = await Promise.all(
+      currentUser.followings.map((cur) => {
+        return Status.find({ userId: cur });
+      })
+    );
+    res.status(200).json(userStatus.concat(...allstatus));
   } catch (err) {
     res.status(500).json(err);
   }
