@@ -4,6 +4,7 @@ const CommentSchema = new mongoose.Schema(
   {
     postId: {
       type: String,
+      default: "",
     },
     text: {
       type: String,

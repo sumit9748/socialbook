@@ -35,6 +35,7 @@ export default function Post({ post, deletePost, socket }) {
   const [like, setLike] = useState(post.likes.length);
   const [isLiked, setisLiked] = useState(false);
   const [user, setUser] = useState({});
+  const [comment, setComment] = useState([]);
 
   const { user: currentUser } = useContext(AuthContext);
 
@@ -43,12 +44,18 @@ export default function Post({ post, deletePost, socket }) {
   }, [currentUser._id, post.likes]);
 
   useEffect(() => {
-    const fetchUser = async () => {
-      const res = await axiosInstance.get(`/users?userId=${post.userId}`);
-      setUser(res.data);
-    };
     fetchUser();
+    fetchComment();
   }, [post.userId]);
+
+  const fetchUser = async () => {
+    const res = await axiosInstance.get(`/users?userId=${post.userId}`);
+    setUser(res.data);
+  };
+  const fetchComment = async () => {
+    const res = await axiosInstance.get(`/comment/allComment/${post._id}`);
+    setComment(res.data);
+  };
 
   const likeHandler = async (type) => {
     if (type === "1") {
@@ -178,7 +185,7 @@ export default function Post({ post, deletePost, socket }) {
   );
 }
 
-export const AccordianComments = ({ post, socket, currentUser }) => {
+export const AccordianComments = ({ post, currentUser }) => {
   const [expanded, setExpanded] = React.useState(false);
 
   const handleChange = (panel) => (event, isExpanded) => {
@@ -188,7 +195,7 @@ export const AccordianComments = ({ post, socket, currentUser }) => {
 
   const sendComment = async () => {
     try {
-      await axiosInstance.post("/comment", {
+      await axiosInstance.post("/comment/", {
         postId: post._id,
         text: comment,
         commenter: currentUser.username,
@@ -216,28 +223,27 @@ export const AccordianComments = ({ post, socket, currentUser }) => {
         <Typography sx={{ color: "text.secondary" }}></Typography>
       </AccordionSummary>
       <AccordionDetails>
-        <div className="comment">
-          <div className="commentleft">
-            <img
-              src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZXxlbnwwfHwwfHw%3D&w=1000&q=80"
-              alt=""
-              style={{
-                width: "20px",
-                height: "20px",
-                borderRadius: "50%",
-                objectFit: "cover",
-              }}
-            />
-            <p>13th Oct</p>
+        {comment?.map((c) => (
+          <div className="comment">
+            <div className="commentleft">
+              <img
+                src={c?.commenterPic}
+                alt=""
+                style={{
+                  width: "20px",
+                  height: "20px",
+                  borderRadius: "50%",
+                  objectFit: "cover",
+                }}
+              />
+              <p>{format(c?.createdAt)}</p>
+            </div>
+            <div className="commentright">
+              <p>{c?.text}</p>
+            </div>
           </div>
-          <div className="commentright">
-            <p>
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-              Cupiditate, eos vitae. Cupiditate, ab? Cum, soluta dolores
-              perferendis accusamus voluptatum saepe?
-            </p>
-          </div>
-        </div>
+        ))}
+
         <input
           type="text"
           style={{ display: "flex", width: "90%" }}
