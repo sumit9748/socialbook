@@ -17,6 +17,11 @@ const StatusSchema = new mongoose.Schema(
     userstatus: {
       type: String,
     },
+    expireAt: {
+      type: Date,
+      default: Date.now,
+      index: { expires: "10000m" },
+    },
   },
   { timestamps: true }
 );
