@@ -6,7 +6,7 @@ import { storage } from "../../pages/Firebase";
 import AddIcon from "@mui/icons-material/Add";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 
-const Status = ({ create, user, fetchStatus }) => {
+const Status = ({ create, user, fetchStatus, status }) => {
   const [file, setFile] = useState(null);
 
   const addStatus = async () => {
@@ -37,16 +37,9 @@ const Status = ({ create, user, fetchStatus }) => {
   };
   return (
     <div className="statusComponent">
-      <img
-        src="https://cache.desktopnexus.com/thumbseg/485/485145-bigthumbnail.jpg"
-        alt=""
-        className="statusProfile"
-      />
+      <img src={status?.profilePic} alt="" className="statusProfile" />
       <div className="back">
-        <img
-          src="https://iphoneswallpapers.com/wp-content/uploads/2020/08/Burning-Rose-Flower.jpg"
-          alt=""
-        />
+        <img src={status?.statusPic} alt="" />
         <label htmlFor="file">
           <input
             style={{ display: "none" }}
