@@ -50,7 +50,7 @@ export default function Feed({ username, text, socket }) {
           <div className="statusProvider">
             <Status create={true} user={user} fetchStatus={fetchStatus} />
             {status?.map((s) => (
-              <Status create={false} user={user} />
+              <Status create={false} user={user} status={s} />
             ))}
           </div>
         )}
