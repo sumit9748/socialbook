@@ -13,7 +13,9 @@ router.post("/", async (req, res) => {
 
 router.get("/allComment/:postId", async (req, res) => {
   try {
-    const allComment = await Comment.find({ postId: req.params.postId });
+    const allComment = await Comment.find({ postId: req.params.postId }).sort(
+      1
+    );
     res.status(200).json(allComment);
   } catch (err) {
     res.status(500).send(err);

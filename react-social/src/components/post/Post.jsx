@@ -35,7 +35,6 @@ export default function Post({ post, deletePost, socket }) {
   const [like, setLike] = useState(post.likes.length);
   const [isLiked, setisLiked] = useState(false);
   const [user, setUser] = useState({});
-  const [comment, setComment] = useState([]);
 
   const { user: currentUser } = useContext(AuthContext);
 
@@ -45,18 +44,14 @@ export default function Post({ post, deletePost, socket }) {
 
   useEffect(() => {
     fetchUser();
-    fetchComment();
-  }, [post.userId]);
+  }, [post]);
 
   const fetchUser = async () => {
-    const res = await axiosInstance.get(`/users?userId=${post.userId}`);
-    setUser(res.data);
+    try {
+      const res = await axiosInstance.get(`/users?userId=${post.userId}`);
+      setUser(res.data);
+    } catch (err) {}
   };
-  const fetchComment = async () => {
-    const res = await axiosInstance.get(`/comment/allComment/${post._id}`);
-    setComment(res.data);
-  };
-
   const likeHandler = async (type) => {
     if (type === "1") {
       try {
@@ -192,6 +187,18 @@ export const AccordianComments = ({ post, currentUser }) => {
     setExpanded(isExpanded ? panel : false);
   };
   const [comment, setComment] = useState("");
+  const [com, setCom] = useState([]);
+
+  useEffect(() => {
+    fetchComment();
+  }, []);
+
+  const fetchComment = async () => {
+    try {
+      const res = await axiosInstance.get(`/comment/allComment/${post._id}`);
+      setCom(res.data);
+    } catch (err) {}
+  };
 
   const sendComment = async () => {
     try {
@@ -201,6 +208,7 @@ export const AccordianComments = ({ post, currentUser }) => {
         commenter: currentUser.username,
         commenterPic: currentUser.profilePicture,
       });
+      fetchComment();
     } catch (err) {
       console.log(err);
     }
@@ -222,34 +230,48 @@ export const AccordianComments = ({ post, currentUser }) => {
         </Typography>
         <Typography sx={{ color: "text.secondary" }}></Typography>
       </AccordionSummary>
-      <AccordionDetails>
-        {comment?.map((c) => (
+      <AccordionDetails
+        style={{
+          display: "flex",
+          alignItems: "center",
+          flexDirection: "column",
+        }}
+      >
+        <div style={{ width: "100%" }}>
+          <input
+            type="text"
+            style={{ display: "flex", width: "90%", margin: "4px 2px" }}
+            onChange={(e) => setComment(e.target.value)}
+          />
+          <button
+            style={{ marginBottom: "20px" }}
+            onClick={() => sendComment()}
+          >
+            Send
+          </button>
+        </div>
+        {com?.map((c) => (
           <div className="comment">
             <div className="commentleft">
               <img
                 src={c?.commenterPic}
                 alt=""
                 style={{
-                  width: "20px",
-                  height: "20px",
+                  width: "25px",
+                  height: "25px",
                   borderRadius: "50%",
                   objectFit: "cover",
                 }}
               />
-              <p>{format(c?.createdAt)}</p>
+              <p style={{ fontSize: "10px", color: "gray" }}>
+                {format(c?.createdAt)}
+              </p>
             </div>
             <div className="commentright">
               <p>{c?.text}</p>
             </div>
           </div>
         ))}
-
-        <input
-          type="text"
-          style={{ display: "flex", width: "90%" }}
-          onChange={(e) => setComment(e.target.value)}
-        />
-        <button onClick={() => sendComment()}>Send</button>
       </AccordionDetails>
     </Accordion>
   );
