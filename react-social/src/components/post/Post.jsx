@@ -191,7 +191,7 @@ export const AccordianComments = ({ post, currentUser }) => {
 
   useEffect(() => {
     fetchComment();
-  }, []);
+  }, [post]);
 
   const fetchComment = async () => {
     try {
