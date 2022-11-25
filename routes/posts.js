@@ -81,7 +81,7 @@ router.get("/timeline/:userId", async (req, res) => {
         return Post.find({ userId: friendId, isVisible: "true" });
       })
     );
-    const sumPosts = followerPosts.concat(...followingPosts);
+    const sumPosts = followerPosts.concat(...userPosts);
     res.json(sumPosts);
   } catch (err) {
     res.status(500).json(err);
