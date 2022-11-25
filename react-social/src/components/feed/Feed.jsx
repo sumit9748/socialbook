@@ -56,23 +56,9 @@ export default function Feed({ username, text, socket }) {
         )}
 
         {(!username || username === user.username) && <Share />}
-        {posts
-          .filter((val) => {
-            if (text === undefined) {
-              return val;
-            } else if (val.desc.toLowerCase().includes(text.toLowerCase())) {
-              return val;
-            }
-            return null;
-          })
-          .map((p) => (
-            <Post
-              key={p._id}
-              post={p}
-              deletePost={deletePost}
-              socket={socket}
-            />
-          ))}
+        {posts.map((p) => (
+          <Post key={p._id} post={p} deletePost={deletePost} socket={socket} />
+        ))}
       </div>
     </div>
   );
