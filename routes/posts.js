@@ -77,12 +77,19 @@ router.get("/timeline/:userId", async (req, res) => {
     };
     const userPosts = await Post.find(query);
     const followerPosts = await Promise.all(
-      currentUser.followers.map((friendId) => {
+      currentUser.followings.map((friendId) => {
         return Post.find({ userId: friendId, isVisible: "true" });
       })
     );
-    const sumPosts = followerPosts.concat(...userPosts);
-    res.json(sumPosts);
+    const followingPosts = await Promise.all(
+      currentUser.followers.map((f) => {
+        return Post.find({ userId: f, isVisible: "true" });
+      })
+    );
+
+    const sumPosts = userPosts.concat(...followerPosts);
+    const returnPost = sumPosts.concat(...followingPosts);
+    res.status(200).json(returnPost);
   } catch (err) {
     res.status(500).json(err);
   }

@@ -28,11 +28,10 @@ export default function Feed({ username, text, socket }) {
       );
     } catch (err) {}
   };
-
+  console.log(posts);
   const fetchStatus = async () => {
     try {
       const res = await axiosInstance.get(`/status/all/${user._id}`);
-      console.log(res);
       setStatus(res.data);
     } catch (err) {}
   };
@@ -56,7 +55,7 @@ export default function Feed({ username, text, socket }) {
         )}
 
         {(!username || username === user.username) && <Share />}
-        {posts.map((p) => (
+        {posts?.map((p) => (
           <Post key={p._id} post={p} deletePost={deletePost} socket={socket} />
         ))}
       </div>
