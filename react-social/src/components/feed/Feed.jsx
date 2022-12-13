@@ -6,7 +6,7 @@ import { AuthContext } from "../../context/AuthContext";
 import { axiosInstance } from "../../config";
 import Status from "../../components/status/Status";
 
-export default function Feed({ username, text, socket }) {
+export default function Feed({ username, socket }) {
   const [posts, setPosts] = useState([]);
   const { user } = useContext(AuthContext);
   const [status, setStatus] = useState([]);
@@ -14,7 +14,7 @@ export default function Feed({ username, text, socket }) {
   useEffect(() => {
     fetchPosts();
     fetchStatus();
-  }, []);
+  }, [username, user]);
 
   const fetchPosts = async () => {
     try {
@@ -28,15 +28,13 @@ export default function Feed({ username, text, socket }) {
       );
     } catch (err) {}
   };
-  console.log(posts);
+
   const fetchStatus = async () => {
     try {
       const res = await axiosInstance.get(`/status/all/${user._id}`);
       setStatus(res.data);
     } catch (err) {}
   };
-
-  console.log(status);
 
   function deletePost() {
     fetchPosts();
