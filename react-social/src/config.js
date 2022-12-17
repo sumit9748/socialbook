@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 
 export const axiosInstance = axios.create({
-  baseURL: "http://localhost:8000/connect/",
+  baseURL: "https://socialbook-api.onrender.com",
 });
 
 function getIntitalWindowWidth() {
