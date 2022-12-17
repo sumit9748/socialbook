@@ -133,6 +133,10 @@ io.on("connection", (socket) => {
   });
 });
 
-http.listen(8000, "0.0.0.0", function () {
-  console.log("Listening on port");
-});
+http.listen(
+  "https://socialbook-api.onrender.com" || 8000,
+  "0.0.0.0",
+  function () {
+    console.log("Listening on port");
+  }
+);
