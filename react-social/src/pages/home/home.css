@@ -3,5 +3,6 @@
   width: 100%;
   background-color: black;
   color: white;
-  overflow-x: scroll;
+  overflow-y: hidden;
+  overflow-x: hidden;
 }

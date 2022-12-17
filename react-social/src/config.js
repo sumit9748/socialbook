@@ -1,21 +1,20 @@
-import axios from "axios"
+import axios from "axios";
 import { useState } from "react";
 
-
 export const axiosInstance = axios.create({
-    baseURL: "https://socialbooksumit.herokuapp.com/connect/"
-})
+  baseURL: "http://localhost:8000/connect/",
+});
 
 function getIntitalWindowWidth() {
-    return window.innerWidth;
+  return window.innerWidth;
 }
 
 export default function useWidth() {
-    const [windowWidth, setWindowWidth] = useState(getIntitalWindowWidth);
+  const [windowWidth, setWindowWidth] = useState(getIntitalWindowWidth);
 
-    window.addEventListener("resize", () => {
-        setWindowWidth(window.innerWidth);
-    });
+  window.addEventListener("resize", () => {
+    setWindowWidth(window.innerWidth);
+  });
 
-    return windowWidth;
+  return windowWidth;
 }

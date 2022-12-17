@@ -14,7 +14,7 @@ export default function Feed({ username, socket }) {
   useEffect(() => {
     fetchPosts();
     fetchStatus();
-  }, [username, user]);
+  }, [user]);
 
   const fetchPosts = async () => {
     try {

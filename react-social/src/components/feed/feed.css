@@ -1,6 +1,6 @@
 .feed {
   flex: 5.5;
-  height: 100%;
+  height: calc(100vh - 50px);
   overflow-y: scroll;
 }
 .statusProvider {

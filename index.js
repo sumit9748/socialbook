@@ -71,12 +71,6 @@ app.use("/connect/onlines", onlineRoute);
 app.use("/connect/comment", commentRoute);
 app.use("/connect/status", statusRoute);
 
-app.use(express.static(path.join(__dirname, "/react-social/build")));
-
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "/react-social/build", "index.html"));
-});
-
 let users = [];
 
 const addUser = (userId, socketId) => {
@@ -139,6 +133,6 @@ io.on("connection", (socket) => {
   });
 });
 
-http.listen(process.env.PORT || 8000, "0.0.0.0", function () {
+http.listen(8000, "0.0.0.0", function () {
   console.log("Listening on port");
 });
