@@ -18,6 +18,7 @@ const path = require("path");
 const cors = require("cors");
 
 const http = require("http").createServer(app);
+const PORT = process.env.PORT || 8080;
 
 const io = require("socket.io")(http, {
   cors: {
@@ -133,6 +134,6 @@ io.on("connection", (socket) => {
   });
 });
 
-http.listen("https://socialbooksumit-api.onrender.com", "0.0.0.0", function () {
+http.listen(PORT, "0.0.0.0", function () {
   console.log("Listening on port");
 });
