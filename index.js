@@ -20,12 +20,7 @@ const cors = require("cors");
 const http = require("http").createServer(app);
 const PORT = process.env.PORT || 8080;
 
-const io = require("socket.io")(http, {
-  cors: {
-    origin: "*",
-    methods: ["GET", "POST", "DELETE", "PUT"],
-  },
-});
+const io = require("socket.io")(http);
 
 dotenv.config();
 
